@@ -2,7 +2,7 @@
 
 proto 주석의 description 영역은 그대로 공개 API 문서가 된다.
 외부 개발자가 API를 이해하고 올바르게 사용할 수 있도록 작성한다.
-model.md의 "주석 작성" 규칙을 기반으로 아래 기준을 추가 적용한다.
+model과 service 모두에 적용되는 공통 기준이다.
 
 ## 1. Marker 중복 금지
 
