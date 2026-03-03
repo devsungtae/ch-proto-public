@@ -72,7 +72,7 @@ private static final long serialVersionUID = 0L;
           }
           case 24: {
 
-            hasMore_ = input.readBool();
+            hasNext_ = input.readBool();
             break;
           }
           default: {
@@ -196,19 +196,19 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int HAS_MORE_FIELD_NUMBER = 3;
-  private boolean hasMore_;
+  public static final int HAS_NEXT_FIELD_NUMBER = 3;
+  private boolean hasNext_;
   /**
    * <pre>
-   * Whether more results are available beyond this page.
+   * Whether a next page of results exists.
    * </pre>
    *
-   * <code>bool has_more = 3 [json_name = "hasMore"];</code>
-   * @return The hasMore.
+   * <code>bool has_next = 3 [json_name = "hasNext"];</code>
+   * @return The hasNext.
    */
   @java.lang.Override
-  public boolean getHasMore() {
-    return hasMore_;
+  public boolean getHasNext() {
+    return hasNext_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -231,8 +231,8 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nextCursor_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, nextCursor_);
     }
-    if (hasMore_ != false) {
-      output.writeBool(3, hasMore_);
+    if (hasNext_ != false) {
+      output.writeBool(3, hasNext_);
     }
     unknownFields.writeTo(output);
   }
@@ -250,9 +250,9 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nextCursor_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, nextCursor_);
     }
-    if (hasMore_ != false) {
+    if (hasNext_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(3, hasMore_);
+        .computeBoolSize(3, hasNext_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -273,8 +273,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getOneTimeMsgsList())) return false;
     if (!getNextCursor()
         .equals(other.getNextCursor())) return false;
-    if (getHasMore()
-        != other.getHasMore()) return false;
+    if (getHasNext()
+        != other.getHasNext()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -292,9 +292,9 @@ private static final long serialVersionUID = 0L;
     }
     hash = (37 * hash) + NEXT_CURSOR_FIELD_NUMBER;
     hash = (53 * hash) + getNextCursor().hashCode();
-    hash = (37 * hash) + HAS_MORE_FIELD_NUMBER;
+    hash = (37 * hash) + HAS_NEXT_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getHasMore());
+        getHasNext());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -441,7 +441,7 @@ private static final long serialVersionUID = 0L;
       }
       nextCursor_ = "";
 
-      hasMore_ = false;
+      hasNext_ = false;
 
       return this;
     }
@@ -480,7 +480,7 @@ private static final long serialVersionUID = 0L;
         result.oneTimeMsgs_ = oneTimeMsgsBuilder_.build();
       }
       result.nextCursor_ = nextCursor_;
-      result.hasMore_ = hasMore_;
+      result.hasNext_ = hasNext_;
       onBuilt();
       return result;
     }
@@ -559,8 +559,8 @@ private static final long serialVersionUID = 0L;
         nextCursor_ = other.nextCursor_;
         onChanged();
       }
-      if (other.getHasMore() != false) {
-        setHasMore(other.getHasMore());
+      if (other.getHasNext() != false) {
+        setHasNext(other.getHasNext());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -928,45 +928,45 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private boolean hasMore_ ;
+    private boolean hasNext_ ;
     /**
      * <pre>
-     * Whether more results are available beyond this page.
+     * Whether a next page of results exists.
      * </pre>
      *
-     * <code>bool has_more = 3 [json_name = "hasMore"];</code>
-     * @return The hasMore.
+     * <code>bool has_next = 3 [json_name = "hasNext"];</code>
+     * @return The hasNext.
      */
     @java.lang.Override
-    public boolean getHasMore() {
-      return hasMore_;
+    public boolean getHasNext() {
+      return hasNext_;
     }
     /**
      * <pre>
-     * Whether more results are available beyond this page.
+     * Whether a next page of results exists.
      * </pre>
      *
-     * <code>bool has_more = 3 [json_name = "hasMore"];</code>
-     * @param value The hasMore to set.
+     * <code>bool has_next = 3 [json_name = "hasNext"];</code>
+     * @param value The hasNext to set.
      * @return This builder for chaining.
      */
-    public Builder setHasMore(boolean value) {
+    public Builder setHasNext(boolean value) {
       
-      hasMore_ = value;
+      hasNext_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * Whether more results are available beyond this page.
+     * Whether a next page of results exists.
      * </pre>
      *
-     * <code>bool has_more = 3 [json_name = "hasMore"];</code>
+     * <code>bool has_next = 3 [json_name = "hasNext"];</code>
      * @return This builder for chaining.
      */
-    public Builder clearHasMore() {
+    public Builder clearHasNext() {
       
-      hasMore_ = false;
+      hasNext_ = false;
       onChanged();
       return this;
     }
@@ -1034,14 +1034,14 @@ private static final long serialVersionUID = 0L;
     }
     	
     /**
-     * @param value The has_more to set.
+     * @param value The has_next to set.
      * @return This builder for chaining.
      */
-    public Builder setOrClearHasMore(java.lang.Boolean value) {
+    public Builder setOrClearHasNext(java.lang.Boolean value) {
     	if (value == null)
-    		return clearHasMore();
+    		return clearHasNext();
     	else
-    		return setHasMore(value);
+    		return setHasNext(value);
     }
     	
     /**
@@ -1049,11 +1049,11 @@ private static final long serialVersionUID = 0L;
      * @param mapFunc The function to map the value into the proto message.
      * @return This builder for chaining.
      */
-    public <T> Builder mapOrClearHasMore(T value, java.util.function.Function<T, java.lang.Boolean> mapFunc) {
+    public <T> Builder mapOrClearHasNext(T value, java.util.function.Function<T, java.lang.Boolean> mapFunc) {
     	if (value == null)
-    		return clearHasMore();
+    		return clearHasNext();
     	else
-    		return setHasMore(mapFunc.apply(value));
+    		return setHasNext(mapFunc.apply(value));
     }
     	
     // @@protoc_insertion_point(builder_scope:coreapi.service.SearchOneTimeMsgsResult)

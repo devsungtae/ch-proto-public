@@ -77,8 +77,8 @@ public final class OneTimeMsg {
       "sgStateR\006states\"\224\001\n\027SearchOneTimeMsgsRes" +
       "ult\022=\n\rone_time_msgs\030\001 \003(\0132\031.coreapi.mod" +
       "el.OneTimeMsgR\013oneTimeMsgs\022\037\n\013next_curso" +
-      "r\030\002 \001(\tR\nnextCursor\022\031\n\010has_more\030\003 \001(\010R\007h" +
-      "asMore\"U\n\024GetOneTimeMsgRequest\022\026\n\002id\030\001 \001" +
+      "r\030\002 \001(\tR\nnextCursor\022\031\n\010has_next\030\003 \001(\010R\007h" +
+      "asNext\"U\n\024GetOneTimeMsgRequest\022\026\n\002id\030\001 \001" +
       "(\tB\006\272H\003\310\001\001R\002id\022%\n\nchannel_id\030\002 \001(\tB\006\272H\003\310" +
       "\001\001R\tchannelId\"R\n\023GetOneTimeMsgResult\022;\n\014" +
       "one_time_msg\030\001 \001(\0132\031.coreapi.model.OneTi" +
@@ -95,8 +95,8 @@ public final class OneTimeMsg {
       "der\"\245\001\n\033SearchOneTimeMsgUsersResult\022J\n\022o" +
       "ne_time_msg_users\030\001 \003(\0132\035.coreapi.model." +
       "OneTimeMsgUserR\017oneTimeMsgUsers\022\037\n\013next_" +
-      "cursor\030\002 \001(\tR\nnextCursor\022\031\n\010has_more\030\003 \001" +
-      "(\010R\007hasMore\"\221\001\n\030GetOneTimeMsgUserRequest" +
+      "cursor\030\002 \001(\tR\nnextCursor\022\031\n\010has_next\030\003 \001" +
+      "(\010R\007hasNext\"\221\001\n\030GetOneTimeMsgUserRequest" +
       "\022-\n\017one_time_msg_id\030\001 \001(\tB\006\272H\003\310\001\001R\014oneTi" +
       "meMsgId\022\037\n\007user_id\030\002 \001(\tB\006\272H\003\310\001\001R\006userId" +
       "\022%\n\nchannel_id\030\003 \001(\tB\006\272H\003\310\001\001R\tchannelId\"" +
@@ -126,7 +126,7 @@ public final class OneTimeMsg {
     internal_static_coreapi_service_SearchOneTimeMsgsResult_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_coreapi_service_SearchOneTimeMsgsResult_descriptor,
-        new java.lang.String[] { "OneTimeMsgs", "NextCursor", "HasMore", });
+        new java.lang.String[] { "OneTimeMsgs", "NextCursor", "HasNext", });
     internal_static_coreapi_service_GetOneTimeMsgRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_coreapi_service_GetOneTimeMsgRequest_fieldAccessorTable = new
@@ -150,7 +150,7 @@ public final class OneTimeMsg {
     internal_static_coreapi_service_SearchOneTimeMsgUsersResult_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_coreapi_service_SearchOneTimeMsgUsersResult_descriptor,
-        new java.lang.String[] { "OneTimeMsgUsers", "NextCursor", "HasMore", });
+        new java.lang.String[] { "OneTimeMsgUsers", "NextCursor", "HasNext", });
     internal_static_coreapi_service_GetOneTimeMsgUserRequest_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_coreapi_service_GetOneTimeMsgUserRequest_fieldAccessorTable = new

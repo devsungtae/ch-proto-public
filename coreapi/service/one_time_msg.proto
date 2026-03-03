@@ -48,8 +48,8 @@ message SearchOneTimeMsgsResult {
   // Opaque cursor for the next page. Null if no more results.
   string next_cursor = 2;
 
-  // Whether more results are available beyond this page.
-  bool has_more = 3;
+  // Whether a next page of results exists.
+  bool has_next = 3;
 }
 
 // Retrieves a single one-time message.
@@ -113,8 +113,8 @@ message SearchOneTimeMsgUsersResult {
   // Opaque cursor for the next page. Null if no more results.
   string next_cursor = 2;
 
-  // Whether more results are available beyond this page.
-  bool has_more = 3;
+  // Whether a next page of results exists.
+  bool has_next = 3;
 }
 
 // Retrieves a single one-time message user by oneTimeMsgId and userId.

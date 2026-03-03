@@ -53,11 +53,11 @@ public interface SearchOneTimeMsgUsersResultOrBuilder extends
 
   /**
    * <pre>
-   * Whether more results are available beyond this page.
+   * Whether a next page of results exists.
    * </pre>
    *
-   * <code>bool has_more = 3 [json_name = "hasMore"];</code>
-   * @return The hasMore.
+   * <code>bool has_next = 3 [json_name = "hasNext"];</code>
+   * @return The hasNext.
    */
-  boolean getHasMore();
+  boolean getHasNext();
 }

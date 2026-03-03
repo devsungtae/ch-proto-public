@@ -114,8 +114,8 @@ type SearchOneTimeMsgsResult struct {
 	OneTimeMsgs []*model.OneTimeMsg    `protobuf:"bytes,1,rep,name=one_time_msgs,json=oneTimeMsgs,proto3" json:"one_time_msgs,omitempty"`
 	// Opaque cursor for the next page. Null if no more results.
 	NextCursor string `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3" json:"next_cursor,omitempty"`
-	// Whether more results are available beyond this page.
-	HasMore       bool `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
+	// Whether a next page of results exists.
+	HasNext       bool `protobuf:"varint,3,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -164,9 +164,9 @@ func (x *SearchOneTimeMsgsResult) GetNextCursor() string {
 	return ""
 }
 
-func (x *SearchOneTimeMsgsResult) GetHasMore() bool {
+func (x *SearchOneTimeMsgsResult) GetHasNext() bool {
 	if x != nil {
-		return x.HasMore
+		return x.HasNext
 	}
 	return false
 }
@@ -383,8 +383,8 @@ type SearchOneTimeMsgUsersResult struct {
 	OneTimeMsgUsers []*model.OneTimeMsgUser `protobuf:"bytes,1,rep,name=one_time_msg_users,json=oneTimeMsgUsers,proto3" json:"one_time_msg_users,omitempty"`
 	// Opaque cursor for the next page. Null if no more results.
 	NextCursor string `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3" json:"next_cursor,omitempty"`
-	// Whether more results are available beyond this page.
-	HasMore       bool `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
+	// Whether a next page of results exists.
+	HasNext       bool `protobuf:"varint,3,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -433,9 +433,9 @@ func (x *SearchOneTimeMsgUsersResult) GetNextCursor() string {
 	return ""
 }
 
-func (x *SearchOneTimeMsgUsersResult) GetHasMore() bool {
+func (x *SearchOneTimeMsgUsersResult) GetHasNext() bool {
 	if x != nil {
-		return x.HasMore
+		return x.HasNext
 	}
 	return false
 }
@@ -565,7 +565,7 @@ const file_coreapi_service_one_time_msg_proto_rawDesc = "" +
 	"\rone_time_msgs\x18\x01 \x03(\v2\x19.coreapi.model.OneTimeMsgR\voneTimeMsgs\x12\x1f\n" +
 	"\vnext_cursor\x18\x02 \x01(\tR\n" +
 	"nextCursor\x12\x19\n" +
-	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"U\n" +
+	"\bhas_next\x18\x03 \x01(\bR\ahasNext\"U\n" +
 	"\x14GetOneTimeMsgRequest\x12\x16\n" +
 	"\x02id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x02id\x12%\n" +
 	"\n" +
@@ -587,7 +587,7 @@ const file_coreapi_service_one_time_msg_proto_rawDesc = "" +
 	"\x12one_time_msg_users\x18\x01 \x03(\v2\x1d.coreapi.model.OneTimeMsgUserR\x0foneTimeMsgUsers\x12\x1f\n" +
 	"\vnext_cursor\x18\x02 \x01(\tR\n" +
 	"nextCursor\x12\x19\n" +
-	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"\x91\x01\n" +
+	"\bhas_next\x18\x03 \x01(\bR\ahasNext\"\x91\x01\n" +
 	"\x18GetOneTimeMsgUserRequest\x12-\n" +
 	"\x0fone_time_msg_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\foneTimeMsgId\x12\x1f\n" +
 	"\auser_id\x18\x02 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\x06userId\x12%\n" +
