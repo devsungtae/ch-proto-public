@@ -45,7 +45,10 @@ message SearchOneTimeMsgsRequest {
 message SearchOneTimeMsgsResult {
   repeated coreapi.model.OneTimeMsg one_time_msgs = 1;
 
-  // Opaque cursor for the next page. Null if no more results.
+  // Opaque cursor for the next page.
+  // Use has_next to determine whether another page exists.
+  //
+  // +kubebuilder:validation:Nullable
   string next_cursor = 2;
 
   // Whether a next page of results exists.
@@ -110,7 +113,10 @@ message SearchOneTimeMsgUsersRequest {
 message SearchOneTimeMsgUsersResult {
   repeated coreapi.model.OneTimeMsgUser one_time_msg_users = 1;
 
-  // Opaque cursor for the next page. Null if no more results.
+  // Opaque cursor for the next page.
+  // Use has_next to determine whether another page exists.
+  //
+  // +kubebuilder:validation:Nullable
   string next_cursor = 2;
 
   // Whether a next page of results exists.

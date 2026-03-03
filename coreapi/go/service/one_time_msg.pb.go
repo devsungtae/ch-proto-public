@@ -112,7 +112,10 @@ func (x *SearchOneTimeMsgsRequest) GetStates() []model.OneTimeMsgState {
 type SearchOneTimeMsgsResult struct {
 	state       protoimpl.MessageState `protogen:"open.v1"`
 	OneTimeMsgs []*model.OneTimeMsg    `protobuf:"bytes,1,rep,name=one_time_msgs,json=oneTimeMsgs,proto3" json:"one_time_msgs,omitempty"`
-	// Opaque cursor for the next page. Null if no more results.
+	// Opaque cursor for the next page.
+	// Use has_next to determine whether another page exists.
+	//
+	// +kubebuilder:validation:Nullable
 	NextCursor string `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3" json:"next_cursor,omitempty"`
 	// Whether a next page of results exists.
 	HasNext       bool `protobuf:"varint,3,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`
@@ -381,7 +384,10 @@ func (x *SearchOneTimeMsgUsersRequest) GetSortOrder() common.SortOrder {
 type SearchOneTimeMsgUsersResult struct {
 	state           protoimpl.MessageState  `protogen:"open.v1"`
 	OneTimeMsgUsers []*model.OneTimeMsgUser `protobuf:"bytes,1,rep,name=one_time_msg_users,json=oneTimeMsgUsers,proto3" json:"one_time_msg_users,omitempty"`
-	// Opaque cursor for the next page. Null if no more results.
+	// Opaque cursor for the next page.
+	// Use has_next to determine whether another page exists.
+	//
+	// +kubebuilder:validation:Nullable
 	NextCursor string `protobuf:"bytes,2,opt,name=next_cursor,json=nextCursor,proto3" json:"next_cursor,omitempty"`
 	// Whether a next page of results exists.
 	HasNext       bool `protobuf:"varint,3,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`

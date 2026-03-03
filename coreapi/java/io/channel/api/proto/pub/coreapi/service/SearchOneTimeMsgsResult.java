@@ -154,7 +154,9 @@ private static final long serialVersionUID = 0L;
   private volatile java.lang.Object nextCursor_;
   /**
    * <pre>
-   * Opaque cursor for the next page. Null if no more results.
+   * Opaque cursor for the next page.
+   * Use has_next to determine whether another page exists.
+   * +kubebuilder:validation:Nullable
    * </pre>
    *
    * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>
@@ -175,7 +177,9 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Opaque cursor for the next page. Null if no more results.
+   * Opaque cursor for the next page.
+   * Use has_next to determine whether another page exists.
+   * +kubebuilder:validation:Nullable
    * </pre>
    *
    * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>
@@ -835,7 +839,9 @@ private static final long serialVersionUID = 0L;
     private java.lang.Object nextCursor_ = "";
     /**
      * <pre>
-     * Opaque cursor for the next page. Null if no more results.
+     * Opaque cursor for the next page.
+     * Use has_next to determine whether another page exists.
+     * +kubebuilder:validation:Nullable
      * </pre>
      *
      * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>
@@ -855,7 +861,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Opaque cursor for the next page. Null if no more results.
+     * Opaque cursor for the next page.
+     * Use has_next to determine whether another page exists.
+     * +kubebuilder:validation:Nullable
      * </pre>
      *
      * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>
@@ -876,7 +884,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Opaque cursor for the next page. Null if no more results.
+     * Opaque cursor for the next page.
+     * Use has_next to determine whether another page exists.
+     * +kubebuilder:validation:Nullable
      * </pre>
      *
      * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>
@@ -895,7 +905,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Opaque cursor for the next page. Null if no more results.
+     * Opaque cursor for the next page.
+     * Use has_next to determine whether another page exists.
+     * +kubebuilder:validation:Nullable
      * </pre>
      *
      * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>
@@ -909,7 +921,9 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Opaque cursor for the next page. Null if no more results.
+     * Opaque cursor for the next page.
+     * Use has_next to determine whether another page exists.
+     * +kubebuilder:validation:Nullable
      * </pre>
      *
      * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>

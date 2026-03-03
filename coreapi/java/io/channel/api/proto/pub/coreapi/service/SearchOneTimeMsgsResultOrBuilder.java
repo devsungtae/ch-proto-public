@@ -33,7 +33,9 @@ public interface SearchOneTimeMsgsResultOrBuilder extends
 
   /**
    * <pre>
-   * Opaque cursor for the next page. Null if no more results.
+   * Opaque cursor for the next page.
+   * Use has_next to determine whether another page exists.
+   * +kubebuilder:validation:Nullable
    * </pre>
    *
    * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>
@@ -42,7 +44,9 @@ public interface SearchOneTimeMsgsResultOrBuilder extends
   java.lang.String getNextCursor();
   /**
    * <pre>
-   * Opaque cursor for the next page. Null if no more results.
+   * Opaque cursor for the next page.
+   * Use has_next to determine whether another page exists.
+   * +kubebuilder:validation:Nullable
    * </pre>
    *
    * <code>string next_cursor = 2 [json_name = "nextCursor"];</code>
