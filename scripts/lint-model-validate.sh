@@ -30,11 +30,11 @@ lint_file() {
       # 필드 선언 + 이어지는 어노테이션 블록까지 수집
       local field_block="$line"
       # 여러 줄에 걸친 [...] 어노테이션 수집
-      if [[ "$line" =~ \[ ]] && ! [[ "$line" =~ \] ]]; then
+      if [[ "$line" =~ \[ ]] && ! [[ "$line" =~ \]\; ]]; then
         while IFS= read -r next_line; do
           lineno=$((lineno + 1))
           field_block+=$'\n'"$next_line"
-          if [[ "$next_line" =~ \] ]]; then
+          if [[ "$next_line" =~ \]\; ]]; then
             break
           fi
         done
