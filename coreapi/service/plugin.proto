@@ -1,0 +1,189 @@
+syntax = "proto3";
+
+package coreapi.service;
+
+import "buf/validate/validate.proto";
+import "coreapi/model/plugin.proto";
+
+option go_package = "github.com/channel-io/ch-proto-public/coreapi/go/service";
+option java_multiple_files = true;
+option java_package = "io.channel.api.proto.pub.coreapi.service";
+
+// Retrieves a list of plugins.
+//
+// The number of plugins retrieved is restricted by the limit parameter,
+// and is capped to values in the closed interval [1, 500].
+// Pagination is cursor-based. Pass the nextCursor value from the previous response
+// as the cursor parameter to retrieve the next page.
+// If the cursor parameter is left empty, the list starts with the
+// earliest created plugin.
+//
+// Results are sorted by createdAt in ascending order.
+message SearchPluginsRequest {
+  // Channel ID to search plugins in.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // Opaque pagination cursor from a previous response.
+  string cursor = 2;
+
+  // Maximum number of results to return. Defaults to 25 if unset.
+  int32 limit = 3 [(buf.validate.field).cel = {
+    id: "int32.between"
+    message: "limit must be between 1 and 500"
+    expression: "this == 0 || (this >= 1 && this <= 500)"
+  }];
+}
+
+// Response for plugin list retrieval.
+message SearchPluginsResult {
+  repeated coreapi.model.Plugin plugins = 1;
+
+  // Opaque cursor for the next page.
+  // Use has_next to determine whether another page exists.
+  //
+  // +kubebuilder:validation:Nullable
+  string next_cursor = 2;
+
+  // Whether a next page of results exists.
+  bool has_next = 3;
+}
+
+// Retrieves a single plugin.
+message GetPluginRequest {
+  // Plugin ID to retrieve.
+  string plugin_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the plugin belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for single plugin retrieval.
+message GetPluginResult {
+  coreapi.model.Plugin plugin = 1;
+}
+
+// Updates a plugin.
+message UpdatePluginRequest {
+  // Plugin ID to update.
+  string plugin_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the plugin belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+
+  // Plugin display name.
+  //
+  // +kubebuilder:validation:Nullable
+  // +kubebuilder:validation:MinLength=1
+  // +kubebuilder:validation:MaxLength=30
+  string name = 3 [(buf.validate.field).cel = {
+    id: "string.maxLen"
+    message: "value must be no more than 30 characters"
+    expression: "this == '' || size(this) <= 30"
+  }];
+
+  // Visual theme of the widget.
+  //
+  // +kubebuilder:validation:Nullable
+  coreapi.model.PluginAppearance appearance = 4;
+
+  // Whether the label button is displayed on the widget.
+  //
+  // +kubebuilder:validation:Nullable
+  bool label_button = 5;
+
+  // Text displayed on the label button.
+  //
+  // +kubebuilder:validation:Nullable
+  // +kubebuilder:validation:MinLength=4
+  // +kubebuilder:validation:MaxLength=30
+  string label_button_text = 6 [(buf.validate.field).cel = {
+    id: "string.len"
+    message: "value must be between 4 and 30 characters"
+    expression: "this == '' || (size(this) >= 4 && size(this) <= 30)"
+  }];
+
+  // Internationalized label button text keyed by locale.
+  // Each value must be between 4 and 30 characters.
+  //
+  // +kubebuilder:validation:Nullable
+  map<string, string> label_button_text_i18n_map = 7;
+
+  // Type of the launcher button.
+  //
+  // +kubebuilder:validation:Nullable
+  coreapi.model.PluginButtonType button_type = 8;
+
+  // Predefined icon for the launcher button.
+  // Applicable when button_type is PLUGIN_BUTTON_TYPE_ICON_BUTTON.
+  //
+  // +kubebuilder:validation:Nullable
+  coreapi.model.PluginIconButton icon_button = 9;
+
+  // Horizontal margin in pixels for the desktop widget.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 desk_margin_x = 10;
+
+  // Vertical margin in pixels for the desktop widget.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 desk_margin_y = 11;
+
+  // Whether the launcher button is hidden on desktop.
+  //
+  // +kubebuilder:validation:Nullable
+  bool desk_hide_button = 12;
+
+  // Horizontal position of the widget on desktop.
+  //
+  // +kubebuilder:validation:Nullable
+  coreapi.model.PluginPosition desk_position = 13;
+
+  // Horizontal margin in pixels for the mobile widget.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 mobile_margin_x = 14;
+
+  // Vertical margin in pixels for the mobile widget.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 mobile_margin_y = 15;
+
+  // Horizontal position of the widget on mobile.
+  //
+  // +kubebuilder:validation:Nullable
+  coreapi.model.PluginPosition mobile_position = 16;
+
+  // Whether the launcher button is hidden on mobile.
+  //
+  // +kubebuilder:validation:Nullable
+  bool mobile_hide_button = 17;
+
+  // Vertical position of the chat bubble on mobile.
+  //
+  // +kubebuilder:validation:Nullable
+  coreapi.model.PluginBubblePosition mobile_bubble_position = 18;
+
+  // Ratio of website visitors who see the plugin widget.
+  //
+  // +kubebuilder:validation:Nullable
+  // +kubebuilder:validation:Minimum=0
+  // +kubebuilder:validation:Maximum=1
+  float run_rate = 19 [
+    (buf.validate.field).cel = {
+      id: "float.gte"
+      message: "value must be at least 0"
+      expression: "this >= 0.0"
+    },
+    (buf.validate.field).cel = {
+      id: "float.lte"
+      message: "value must be at most 1"
+      expression: "this <= 1.0"
+    }
+  ];
+}
+
+// Response for plugin update.
+message UpdatePluginResult {
+  coreapi.model.Plugin plugin = 1;
+}
