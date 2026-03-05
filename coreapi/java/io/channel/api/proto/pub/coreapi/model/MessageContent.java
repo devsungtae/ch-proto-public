@@ -310,7 +310,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Interactive buttons attached to the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=2
    * </pre>
    *
@@ -324,7 +323,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Interactive buttons attached to the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=2
    * </pre>
    *
@@ -339,7 +337,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Interactive buttons attached to the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=2
    * </pre>
    *
@@ -353,7 +350,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Interactive buttons attached to the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=2
    * </pre>
    *
@@ -367,7 +363,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Interactive buttons attached to the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=2
    * </pre>
    *
@@ -385,7 +380,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * File attachments included in the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=10
    * </pre>
    *
@@ -399,7 +393,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * File attachments included in the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=10
    * </pre>
    *
@@ -414,7 +407,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * File attachments included in the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=10
    * </pre>
    *
@@ -428,7 +420,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * File attachments included in the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=10
    * </pre>
    *
@@ -442,7 +433,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * File attachments included in the message.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * +kubebuilder:validation:MaxItems=10
    * </pre>
    *
@@ -555,7 +545,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Option flags that modify message delivery and display behavior.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -570,7 +559,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Option flags that modify message delivery and display behavior.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -584,7 +572,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Option flags that modify message delivery and display behavior.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -599,7 +586,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Option flags that modify message delivery and display behavior.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -614,7 +600,6 @@ private static final long serialVersionUID = 0L;
    * <pre>
    * Option flags that modify message delivery and display behavior.
    * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -1714,7 +1699,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1731,7 +1715,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1748,7 +1731,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1765,7 +1747,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1789,7 +1770,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1810,7 +1790,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1833,7 +1812,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1857,7 +1835,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1878,7 +1855,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1899,7 +1875,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1921,7 +1896,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1941,7 +1915,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1961,7 +1934,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1975,7 +1947,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -1992,7 +1963,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -2010,7 +1980,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -2024,7 +1993,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -2039,7 +2007,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Interactive buttons attached to the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=2
      * </pre>
      *
@@ -2080,7 +2047,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2097,7 +2063,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2114,7 +2079,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2131,7 +2095,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2155,7 +2118,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2176,7 +2138,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2199,7 +2160,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2223,7 +2183,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2244,7 +2203,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2265,7 +2223,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2287,7 +2244,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2307,7 +2263,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2327,7 +2282,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2341,7 +2295,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2358,7 +2311,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2376,7 +2328,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2390,7 +2341,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2405,7 +2355,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * File attachments included in the message.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * +kubebuilder:validation:MaxItems=10
      * </pre>
      *
@@ -2779,7 +2728,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2793,7 +2741,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2806,7 +2753,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2820,7 +2766,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2842,7 +2787,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2862,7 +2806,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2882,7 +2825,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2898,7 +2840,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2912,7 +2853,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2926,7 +2866,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2945,7 +2884,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>
@@ -2962,7 +2900,6 @@ private static final long serialVersionUID = 0L;
      * <pre>
      * Option flags that modify message delivery and display behavior.
      * +kubebuilder:validation:Nullable
-     * +kubebuilder:validation:MinItems=1
      * </pre>
      *
      * <code>repeated .coreapi.model.MessageOption options = 7 [json_name = "options"];</code>

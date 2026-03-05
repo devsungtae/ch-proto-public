@@ -768,13 +768,11 @@ type MessageContent struct {
 	// Interactive buttons attached to the message.
 	//
 	// +kubebuilder:validation:Nullable
-	// +kubebuilder:validation:MinItems=1
 	// +kubebuilder:validation:MaxItems=2
 	Buttons []*MessageButton `protobuf:"bytes,3,rep,name=buttons,proto3" json:"buttons,omitempty"`
 	// File attachments included in the message.
 	//
 	// +kubebuilder:validation:Nullable
-	// +kubebuilder:validation:MinItems=1
 	// +kubebuilder:validation:MaxItems=10
 	Files []*MessageFile `protobuf:"bytes,4,rep,name=files,proto3" json:"files,omitempty"`
 	// Web page link preview attached to the message.
@@ -789,7 +787,6 @@ type MessageContent struct {
 	// Option flags that modify message delivery and display behavior.
 	//
 	// +kubebuilder:validation:Nullable
-	// +kubebuilder:validation:MinItems=1
 	Options []MessageOption `protobuf:"varint,7,rep,packed,name=options,proto3,enum=coreapi.model.MessageOption" json:"options,omitempty"`
 	// Client-generated request identifier for idempotency.
 	//
@@ -939,15 +936,13 @@ const file_coreapi_model_message_content_proto_rawDesc = "" +
 	"\vpreview_key\x18\f \x01(\tR\n" +
 	"previewKey\x12\x12\n" +
 	"\x04logo\x18\r \x01(\tR\x04logo\x12\x12\n" +
-	"\x04name\x18\x0e \x01(\tR\x04name\"\x9d\x03\n" +
+	"\x04name\x18\x0e \x01(\tR\x04name\"\x99\x03\n" +
 	"\x0eMessageContent\x12,\n" +
 	"\x06blocks\x18\x01 \x03(\v2\x14.coreapi.model.BlockR\x06blocks\x12\x1d\n" +
 	"\n" +
-	"plain_text\x18\x02 \x01(\tR\tplainText\x12B\n" +
-	"\abuttons\x18\x03 \x03(\v2\x1c.coreapi.model.MessageButtonB\n" +
-	"\xbaH\a\x92\x01\x04\b\x00\x10\x02R\abuttons\x12<\n" +
-	"\x05files\x18\x04 \x03(\v2\x1a.coreapi.model.MessageFileB\n" +
-	"\xbaH\a\x92\x01\x04\b\x00\x10\n" +
+	"plain_text\x18\x02 \x01(\tR\tplainText\x12@\n" +
+	"\abuttons\x18\x03 \x03(\v2\x1c.coreapi.model.MessageButtonB\b\xbaH\x05\x92\x01\x02\x10\x02R\abuttons\x12:\n" +
+	"\x05files\x18\x04 \x03(\v2\x1a.coreapi.model.MessageFileB\b\xbaH\x05\x92\x01\x02\x10\n" +
 	"R\x05files\x128\n" +
 	"\bweb_page\x18\x05 \x01(\v2\x1d.coreapi.model.MessageWebPageR\awebPage\x12+\n" +
 	"\x04form\x18\x06 \x01(\v2\x17.google.protobuf.StructR\x04form\x126\n" +

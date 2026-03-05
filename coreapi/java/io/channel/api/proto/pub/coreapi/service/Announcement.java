@@ -53,20 +53,19 @@ public final class Announcement {
       "ing.maxLen\022(value must be no more than 3" +
       "0 characters\032\020size(this) <= 30r\0232\021^$|^[^" +
       "@#$%:/\\\\]+$R\007botName\")\n\023AnnounceToAllRes" +
-      "ult\022\022\n\004sent\030\001 \001(\005R\004sent\"\355\002\n\017AnnounceRequ" +
+      "ult\022\022\n\004sent\030\001 \001(\005R\004sent\"\261\002\n\017AnnounceRequ" +
       "est\022%\n\nchannel_id\030\001 \001(\tB\006\272H\003\310\001\001R\tchannel" +
       "Id\022?\n\007message\030\002 \001(\0132\035.coreapi.model.Mess" +
       "ageContentB\006\272H\003\310\001\001R\007message\022\201\001\n\010bot_name" +
       "\030\003 \001(\tBf\272Hc\272\001K\n\rstring.maxLen\022(value mus" +
       "t be no more than 30 characters\032\020size(th" +
       "is) <= 30r\0232\021^$|^[^@#$%:/\\\\]+$R\007botName\022" +
-      "n\n\013manager_ids\030\004 \003(\tBM\272HJ\272\001D\n\rstring.min" +
-      "Len\022\"value must be at least 1 character\032" +
-      "\017size(this) >= 1\310\001\001R\nmanagerIds\"$\n\016Annou" +
-      "nceResult\022\022\n\004sent\030\001 \001(\005R\004sentBf\n(io.chan" +
-      "nel.api.proto.pub.coreapi.serviceP\001Z8git" +
-      "hub.com/channel-io/ch-proto-public/corea" +
-      "pi/go/serviceb\006proto3"
+      "2\n\013manager_ids\030\004 \003(\tB\021\272H\016\310\001\001\222\001\010\010\001\"\004r\002\020\001R" +
+      "\nmanagerIds\"$\n\016AnnounceResult\022\022\n\004sent\030\001 " +
+      "\001(\005R\004sentBf\n(io.channel.api.proto.pub.co" +
+      "reapi.serviceP\001Z8github.com/channel-io/c" +
+      "h-proto-public/coreapi/go/serviceb\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

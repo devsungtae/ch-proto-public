@@ -284,15 +284,14 @@ const file_coreapi_service_announcement_proto_rawDesc = "" +
 	"\bbot_name\x18\x03 \x01(\tBf\xbaHc\xba\x01K\n" +
 	"\rstring.maxLen\x12(value must be no more than 30 characters\x1a\x10size(this) <= 30r\x132\x11^$|^[^@#$%:/\\\\]+$R\abotName\")\n" +
 	"\x13AnnounceToAllResult\x12\x12\n" +
-	"\x04sent\x18\x01 \x01(\x05R\x04sent\"\xed\x02\n" +
+	"\x04sent\x18\x01 \x01(\x05R\x04sent\"\xb1\x02\n" +
 	"\x0fAnnounceRequest\x12%\n" +
 	"\n" +
 	"channel_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tchannelId\x12?\n" +
 	"\amessage\x18\x02 \x01(\v2\x1d.coreapi.model.MessageContentB\x06\xbaH\x03\xc8\x01\x01R\amessage\x12\x81\x01\n" +
 	"\bbot_name\x18\x03 \x01(\tBf\xbaHc\xba\x01K\n" +
-	"\rstring.maxLen\x12(value must be no more than 30 characters\x1a\x10size(this) <= 30r\x132\x11^$|^[^@#$%:/\\\\]+$R\abotName\x12n\n" +
-	"\vmanager_ids\x18\x04 \x03(\tBM\xbaHJ\xba\x01D\n" +
-	"\rstring.minLen\x12\"value must be at least 1 character\x1a\x0fsize(this) >= 1\xc8\x01\x01R\n" +
+	"\rstring.maxLen\x12(value must be no more than 30 characters\x1a\x10size(this) <= 30r\x132\x11^$|^[^@#$%:/\\\\]+$R\abotName\x122\n" +
+	"\vmanager_ids\x18\x04 \x03(\tB\x11\xbaH\x0e\xc8\x01\x01\x92\x01\b\b\x01\"\x04r\x02\x10\x01R\n" +
 	"managerIds\"$\n" +
 	"\x0eAnnounceResult\x12\x12\n" +
 	"\x04sent\x18\x01 \x01(\x05R\x04sentBf\n" +

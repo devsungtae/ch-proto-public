@@ -92,41 +92,41 @@ public final class MessageContentOuterClass {
       "r\022\024\n\005width\030\t \001(\005R\005width\022\026\n\006height\030\n \001(\005R" +
       "\006height\022\026\n\006bucket\030\013 \001(\tR\006bucket\022\037\n\013previ" +
       "ew_key\030\014 \001(\tR\npreviewKey\022\022\n\004logo\030\r \001(\tR\004" +
-      "logo\022\022\n\004name\030\016 \001(\tR\004name\"\235\003\n\016MessageCont" +
+      "logo\022\022\n\004name\030\016 \001(\tR\004name\"\231\003\n\016MessageCont" +
       "ent\022,\n\006blocks\030\001 \003(\0132\024.coreapi.model.Bloc" +
       "kR\006blocks\022\035\n\nplain_text\030\002 \001(\tR\tplainText" +
-      "\022B\n\007buttons\030\003 \003(\0132\034.coreapi.model.Messag" +
-      "eButtonB\n\272H\007\222\001\004\010\000\020\002R\007buttons\022<\n\005files\030\004 " +
-      "\003(\0132\032.coreapi.model.MessageFileB\n\272H\007\222\001\004\010" +
-      "\000\020\nR\005files\0228\n\010web_page\030\005 \001(\0132\035.coreapi.m" +
-      "odel.MessageWebPageR\007webPage\022+\n\004form\030\006 \001" +
-      "(\0132\027.google.protobuf.StructR\004form\0226\n\007opt" +
-      "ions\030\007 \003(\0162\034.coreapi.model.MessageOption" +
-      "R\007options\022\035\n\nrequest_id\030\010 \001(\tR\trequestId" +
-      "*i\n\tBlockType\022\032\n\026BLOCK_TYPE_UNSPECIFIED\020" +
-      "\000\022\023\n\017BLOCK_TYPE_TEXT\020\001\022\023\n\017BLOCK_TYPE_COD" +
-      "E\020\002\022\026\n\022BLOCK_TYPE_BULLETS\020\003*\232\002\n\022ButtonCo" +
-      "lorVariant\022$\n BUTTON_COLOR_VARIANT_UNSPE" +
-      "CIFIED\020\000\022\037\n\033BUTTON_COLOR_VARIANT_COBALT\020" +
-      "\001\022\036\n\032BUTTON_COLOR_VARIANT_GREEN\020\002\022\037\n\033BUT" +
-      "TON_COLOR_VARIANT_ORANGE\020\003\022\034\n\030BUTTON_COL" +
-      "OR_VARIANT_RED\020\004\022\036\n\032BUTTON_COLOR_VARIANT" +
-      "_BLACK\020\005\022\035\n\031BUTTON_COLOR_VARIANT_PINK\020\006\022" +
-      "\037\n\033BUTTON_COLOR_VARIANT_PURPLE\020\007*\310\003\n\rMes" +
-      "sageOption\022\036\n\032MESSAGE_OPTION_UNSPECIFIED" +
-      "\020\000\022!\n\035MESSAGE_OPTION_ACT_AS_MANAGER\020\001\022%\n" +
-      "!MESSAGE_OPTION_DISPLAY_AS_CHANNEL\020\002\022\036\n\032" +
-      "MESSAGE_OPTION_DO_NOT_POST\020\003\022 \n\034MESSAGE_" +
-      "OPTION_DO_NOT_SEARCH\020\004\022\"\n\036MESSAGE_OPTION" +
-      "_DO_NOT_SEND_APP\020\005\022%\n!MESSAGE_OPTION_DO_" +
-      "NOT_UPDATE_DESK\020\006\022\034\n\030MESSAGE_OPTION_IMMU" +
-      "TABLE\020\007\022\032\n\026MESSAGE_OPTION_PRIVATE\020\010\022\031\n\025M" +
-      "ESSAGE_OPTION_SILENT\020\t\022$\n MESSAGE_OPTION" +
-      "_SILENT_TO_MANAGER\020\n\022!\n\035MESSAGE_OPTION_S" +
-      "ILENT_TO_USER\020\013\022\"\n\036MESSAGE_OPTION_ALERT_" +
-      "TO_WRITER\020\014Bb\n&io.channel.api.proto.pub." +
-      "coreapi.modelP\001Z6github.com/channel-io/c" +
-      "h-proto-public/coreapi/go/modelb\006proto3"
+      "\022@\n\007buttons\030\003 \003(\0132\034.coreapi.model.Messag" +
+      "eButtonB\010\272H\005\222\001\002\020\002R\007buttons\022:\n\005files\030\004 \003(" +
+      "\0132\032.coreapi.model.MessageFileB\010\272H\005\222\001\002\020\nR" +
+      "\005files\0228\n\010web_page\030\005 \001(\0132\035.coreapi.model" +
+      ".MessageWebPageR\007webPage\022+\n\004form\030\006 \001(\0132\027" +
+      ".google.protobuf.StructR\004form\0226\n\007options" +
+      "\030\007 \003(\0162\034.coreapi.model.MessageOptionR\007op" +
+      "tions\022\035\n\nrequest_id\030\010 \001(\tR\trequestId*i\n\t" +
+      "BlockType\022\032\n\026BLOCK_TYPE_UNSPECIFIED\020\000\022\023\n" +
+      "\017BLOCK_TYPE_TEXT\020\001\022\023\n\017BLOCK_TYPE_CODE\020\002\022" +
+      "\026\n\022BLOCK_TYPE_BULLETS\020\003*\232\002\n\022ButtonColorV" +
+      "ariant\022$\n BUTTON_COLOR_VARIANT_UNSPECIFI" +
+      "ED\020\000\022\037\n\033BUTTON_COLOR_VARIANT_COBALT\020\001\022\036\n" +
+      "\032BUTTON_COLOR_VARIANT_GREEN\020\002\022\037\n\033BUTTON_" +
+      "COLOR_VARIANT_ORANGE\020\003\022\034\n\030BUTTON_COLOR_V" +
+      "ARIANT_RED\020\004\022\036\n\032BUTTON_COLOR_VARIANT_BLA" +
+      "CK\020\005\022\035\n\031BUTTON_COLOR_VARIANT_PINK\020\006\022\037\n\033B" +
+      "UTTON_COLOR_VARIANT_PURPLE\020\007*\310\003\n\rMessage" +
+      "Option\022\036\n\032MESSAGE_OPTION_UNSPECIFIED\020\000\022!" +
+      "\n\035MESSAGE_OPTION_ACT_AS_MANAGER\020\001\022%\n!MES" +
+      "SAGE_OPTION_DISPLAY_AS_CHANNEL\020\002\022\036\n\032MESS" +
+      "AGE_OPTION_DO_NOT_POST\020\003\022 \n\034MESSAGE_OPTI" +
+      "ON_DO_NOT_SEARCH\020\004\022\"\n\036MESSAGE_OPTION_DO_" +
+      "NOT_SEND_APP\020\005\022%\n!MESSAGE_OPTION_DO_NOT_" +
+      "UPDATE_DESK\020\006\022\034\n\030MESSAGE_OPTION_IMMUTABL" +
+      "E\020\007\022\032\n\026MESSAGE_OPTION_PRIVATE\020\010\022\031\n\025MESSA" +
+      "GE_OPTION_SILENT\020\t\022$\n MESSAGE_OPTION_SIL" +
+      "ENT_TO_MANAGER\020\n\022!\n\035MESSAGE_OPTION_SILEN" +
+      "T_TO_USER\020\013\022\"\n\036MESSAGE_OPTION_ALERT_TO_W" +
+      "RITER\020\014Bb\n&io.channel.api.proto.pub.core" +
+      "api.modelP\001Z6github.com/channel-io/ch-pr" +
+      "oto-public/coreapi/go/modelb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
