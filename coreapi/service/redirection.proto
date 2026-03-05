@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package coreapi.service;
+
+import "buf/validate/validate.proto";
+import "coreapi/model/redirection.proto";
+import "google/protobuf/duration.proto";
+
+option go_package = "github.com/channel-io/ch-proto-public/coreapi/go/service";
+option java_multiple_files = true;
+option java_package = "io.channel.api.proto.pub.coreapi.service";
+
+// Creates a shortened redirection URL.
+//
+// Generates a short URL that redirects to the specified original URL.
+// The `url` must be a channel URL containing the channel domain
+// (e.g., `https://{your_domain}.channel.io`).
+//
+// The `expiration` must be between 1 minute and 30 days.
+// If `expiration` is not specified, it defaults to 1 minute.
+message CreateRedirectionRequest {
+  // Channel ID.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // The original URL to shorten.
+  string url = 2 [
+    (buf.validate.field).cel = {
+      id: "string.minLen"
+      message: "value must be at least 1 character"
+      expression: "size(this) >= 1"
+    },
+    (buf.validate.field).required = true
+  ];
+
+  // Duration until the redirection expires.
+  //
+  // +kubebuilder:validation:Nullable
+  // +kubebuilder:default="PT1M"
+  google.protobuf.Duration expiration = 3 [(buf.validate.field).cel = {
+    id: "duration.between"
+    message: "expiration must be between 1 minute and 30 days"
+    expression: "this >= duration('60s') && this <= duration('2592000s')"
+  }];
+}
+
+// Response for redirection creation.
+message CreateRedirectionResult {
+  coreapi.model.Redirection redirection = 1;
+}
