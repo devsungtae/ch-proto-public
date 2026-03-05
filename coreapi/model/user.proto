@@ -1,0 +1,372 @@
+syntax = "proto3";
+
+package coreapi.model;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/channel-io/ch-proto-public/coreapi/go/model";
+option java_multiple_files = true;
+option java_package = "io.channel.api.proto.pub.coreapi.model";
+
+// User type representing the registration state.
+enum UserType {
+  USER_TYPE_UNSPECIFIED = 0;
+  USER_TYPE_MEMBER = 1;
+  USER_TYPE_LEAD = 2;
+  USER_TYPE_UNIFIED = 3;
+}
+
+// Web session device and browser information.
+message WebInfo {
+  // Device identifier.
+  //
+  // +kubebuilder:validation:Nullable
+  string device = 1;
+
+  // Operating system identifier.
+  //
+  // +kubebuilder:validation:Nullable
+  string os = 2;
+
+  // Operating system display name.
+  //
+  // +kubebuilder:validation:Nullable
+  string os_name = 3;
+
+  // Browser identifier.
+  //
+  // +kubebuilder:validation:Nullable
+  string browser = 4;
+
+  // Browser display name.
+  //
+  // +kubebuilder:validation:Nullable
+  string browser_name = 5;
+
+  // Number of web sessions.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 sessions_count = 6;
+
+  // Timestamp of the last web session.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp last_seen_at = 7;
+}
+
+// Mobile session device and app information.
+message MobileInfo {
+  // Device identifier.
+  //
+  // +kubebuilder:validation:Nullable
+  string device = 1;
+
+  // Operating system identifier.
+  //
+  // +kubebuilder:validation:Nullable
+  string os = 2;
+
+  // Operating system display name.
+  //
+  // +kubebuilder:validation:Nullable
+  string os_name = 3;
+
+  // Host application name.
+  //
+  // +kubebuilder:validation:Nullable
+  string app_name = 4;
+
+  // Host application version.
+  //
+  // +kubebuilder:validation:Nullable
+  string app_version = 5;
+
+  // SDK name.
+  //
+  // +kubebuilder:validation:Nullable
+  string sdk_name = 6;
+
+  // SDK version.
+  //
+  // +kubebuilder:validation:Nullable
+  string sdk_version = 7;
+
+  // Number of mobile sessions.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 sessions_count = 8;
+
+  // Timestamp of the last mobile session.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp last_seen_at = 9;
+}
+
+// User represents a customer or visitor in a channel.
+message User {
+  // Unique user identifier.
+  //
+  // +kubebuilder:validation:Required
+  // +kubebuilder:validation:MinLength=1
+  string id = 1 [
+    (buf.validate.field).cel = {
+      id: "string.minLen"
+      message: "value must be at least 1 character"
+      expression: "size(this) >= 1"
+    },
+    (buf.validate.field).required = true
+  ];
+
+  // Channel ID this user belongs to.
+  //
+  // +kubebuilder:validation:Required
+  // +kubebuilder:validation:MinLength=1
+  string channel_id = 2 [
+    (buf.validate.field).cel = {
+      id: "string.minLen"
+      message: "value must be at least 1 character"
+      expression: "size(this) >= 1"
+    },
+    (buf.validate.field).required = true
+  ];
+
+  // External member identifier provided during user creation or login.
+  //
+  // +kubebuilder:validation:Nullable
+  string member_id = 3;
+
+  // Cookie-based device identifier assigned to anonymous visitors.
+  //
+  // +kubebuilder:validation:Nullable
+  string veil_id = 4;
+
+  // Unified user identifier linking multiple user records.
+  //
+  // +kubebuilder:validation:Nullable
+  string unified_id = 5;
+
+  // Registration state of the user.
+  //
+  // +kubebuilder:validation:Nullable
+  UserType type = 6;
+
+  // Custom key-value profile data.
+  // Standard keys include name, email, mobileNumber, avatarUrl, and more.
+  // Supports additional custom properties.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Struct profile = 7;
+
+  // User display name extracted from profile.
+  //
+  // +kubebuilder:validation:Nullable
+  string name = 8;
+
+  // User avatar image URL.
+  //
+  // +kubebuilder:validation:Nullable
+  string avatar_url = 9;
+
+  // Whether the user has a name set in their profile.
+  //
+  // +kubebuilder:validation:Nullable
+  bool named = 10;
+
+  // User classification tags.
+  //
+  // +kubebuilder:validation:Nullable
+  // +kubebuilder:validation:MaxItems=20
+  repeated string tags = 11;
+
+  // Tags assigned during user data import.
+  //
+  // +kubebuilder:validation:Nullable
+  repeated string user_import_tags = 12;
+
+  // Number of unread notifications.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 alert = 13;
+
+  // Number of unread messages.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 unread = 14;
+
+  // Active pop-up chat identifier.
+  //
+  // +kubebuilder:validation:Nullable
+  string pop_up_chat_id = 15;
+
+  // Active main chat identifier.
+  //
+  // +kubebuilder:validation:Nullable
+  string main_chat_id = 16;
+
+  // Country code of the user.
+  //
+  // +kubebuilder:validation:Nullable
+  string country = 17;
+
+  // IANA timezone of the user.
+  //
+  // +kubebuilder:validation:Nullable
+  string time_zone = 18;
+
+  // Province or state.
+  //
+  // +kubebuilder:validation:Nullable
+  string province = 19;
+
+  // City name.
+  //
+  // +kubebuilder:validation:Nullable
+  string city = 20;
+
+  // Geographic latitude.
+  //
+  // +kubebuilder:validation:Nullable
+  double latitude = 21;
+
+  // Geographic longitude.
+  //
+  // +kubebuilder:validation:Nullable
+  double longitude = 22;
+
+  // Web session information.
+  //
+  // +kubebuilder:validation:Nullable
+  WebInfo web = 23;
+
+  // Mobile session information.
+  //
+  // +kubebuilder:validation:Nullable
+  MobileInfo mobile = 24;
+
+  // Total number of sessions across all platforms.
+  //
+  // +kubebuilder:validation:Nullable
+  int32 sessions_count = 25;
+
+  // Timestamp of the last user activity.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp last_seen_at = 26;
+
+  // Whether the user has an active chat.
+  //
+  // +kubebuilder:validation:Nullable
+  bool has_chat = 27;
+
+  // Whether the user has a registered push token.
+  //
+  // +kubebuilder:validation:Nullable
+  bool has_push_token = 28;
+
+  // Email address from user profile.
+  //
+  // +kubebuilder:validation:Nullable
+  string email = 29;
+
+  // Mobile phone number in E.164 format.
+  //
+  // +kubebuilder:validation:Nullable
+  string mobile_number = 30;
+
+  // Landline phone number in E.164 format.
+  //
+  // +kubebuilder:validation:Nullable
+  string landline_number = 31;
+
+  // Whether the mobile number has been verified.
+  //
+  // +kubebuilder:validation:Nullable
+  bool mobile_number_qualified = 32;
+
+  // Whether the email address has been verified.
+  //
+  // +kubebuilder:validation:Nullable
+  bool email_qualified = 33;
+
+  // Whether the user is blocked.
+  //
+  // +kubebuilder:validation:Nullable
+  bool blocked = 34;
+
+  // Unique key for the block record.
+  //
+  // +kubebuilder:validation:Nullable
+  string blocked_key = 35;
+
+  // Sort key for managed user ordering.
+  //
+  // +kubebuilder:validation:Nullable
+  int64 managed_key = 36;
+
+  // Whether the user is a registered member.
+  //
+  // +kubebuilder:validation:Nullable
+  bool member = 37;
+
+  // Whether the user is access-restricted from the front.
+  //
+  // +kubebuilder:validation:Nullable
+  bool constrainted = 38;
+
+  // Whether the user opted out of email notifications.
+  //
+  // +kubebuilder:validation:Nullable
+  bool unsubscribe_email = 39;
+
+  // Timestamp when email subscription preference was last changed.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp unsubscribe_email_updated_at = 40;
+
+  // Whether the user opted out of SMS/text notifications.
+  //
+  // +kubebuilder:validation:Nullable
+  bool unsubscribe_texting = 41;
+
+  // Timestamp when SMS subscription preference was last changed.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp unsubscribe_texting_updated_at = 42;
+
+  // Whether the user opted out of app push notifications.
+  //
+  // +kubebuilder:validation:Nullable
+  bool unsubscribe_app_push = 43;
+
+  // Timestamp when app push subscription preference was last changed.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp unsubscribe_app_push_updated_at = 44;
+
+  // User's preferred language locale.
+  //
+  // +kubebuilder:validation:Nullable
+  string language = 45;
+
+  // System-detected language locale.
+  //
+  // +kubebuilder:validation:Nullable
+  string system_language = 46;
+
+  // Optimistic lock version.
+  //
+  // +kubebuilder:validation:Nullable
+  int64 version = 47;
+
+  // User creation timestamp.
+  //
+  // +kubebuilder:validation:Required
+  google.protobuf.Timestamp created_at = 48 [(buf.validate.field).required = true];
+
+  // User last update timestamp.
+  //
+  // +kubebuilder:validation:Required
+  google.protobuf.Timestamp updated_at = 49 [(buf.validate.field).required = true];
+}

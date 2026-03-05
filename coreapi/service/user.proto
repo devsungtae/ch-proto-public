@@ -1,0 +1,360 @@
+syntax = "proto3";
+
+package coreapi.service;
+
+import "buf/validate/validate.proto";
+import "coreapi/model/online.proto";
+import "coreapi/model/user.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/channel-io/ch-proto-public/coreapi/go/service";
+option java_multiple_files = true;
+option java_package = "io.channel.api.proto.pub.coreapi.service";
+
+// Retrieves a single user.
+message GetUserRequest {
+  // User ID to retrieve.
+  string user_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for single user retrieval.
+message GetUserResult {
+  coreapi.model.User user = 1;
+
+  // Online presence of the user.
+  coreapi.model.Online online = 2;
+}
+
+// Retrieves a single user by external member identifier.
+message GetUserByMemberIdRequest {
+  // External member identifier.
+  //
+  // +kubebuilder:validation:MaxLength=64
+  // +kubebuilder:validation:Pattern="\\S*"
+  string member_id = 1 [
+    (buf.validate.field).cel = {
+      id: "string.maxLen"
+      message: "value must be no more than 64 characters"
+      expression: "size(this) <= 64"
+    },
+    (buf.validate.field).string.pattern = "^\\S*$",
+    (buf.validate.field).required = true
+  ];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for single user retrieval by member identifier.
+message GetUserByMemberIdResult {
+  coreapi.model.User user = 1;
+
+  // Online presence of the user.
+  coreapi.model.Online online = 2;
+}
+
+// Deletes a user.
+//
+// Returns 404 if the user does not exist.
+message DeleteUserRequest {
+  // User ID to delete.
+  string user_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for user deletion. Empty on success (204 No Content).
+message DeleteUserResult {}
+
+// Deletes a user by external member identifier.
+//
+// Returns 404 if the user does not exist.
+message DeleteUserByMemberIdRequest {
+  // External member identifier.
+  //
+  // +kubebuilder:validation:MaxLength=64
+  // +kubebuilder:validation:Pattern="\\S*"
+  string member_id = 1 [
+    (buf.validate.field).cel = {
+      id: "string.maxLen"
+      message: "value must be no more than 64 characters"
+      expression: "size(this) <= 64"
+    },
+    (buf.validate.field).string.pattern = "^\\S*$",
+    (buf.validate.field).required = true
+  ];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for user deletion by member identifier. Empty on success (204 No Content).
+message DeleteUserByMemberIdResult {}
+
+// Blocks a user.
+// Blocked users cannot start new conversations.
+message BlockUserRequest {
+  // User ID to block.
+  string user_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for user block.
+message BlockUserResult {
+  coreapi.model.User user = 1;
+
+  // Online presence of the user.
+  coreapi.model.Online online = 2;
+}
+
+// Unblocks a previously blocked user.
+message UnblockUserRequest {
+  // User ID to unblock.
+  string user_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for user unblock.
+message UnblockUserResult {
+  coreapi.model.User user = 1;
+
+  // Online presence of the user.
+  coreapi.model.Online online = 2;
+}
+
+// Updates a user partially.
+// Only specified fields are modified; omitted fields remain unchanged.
+message PatchUserRequest {
+  // User ID to update.
+  string user_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+
+  // Custom key-value profile data to set or merge.
+  google.protobuf.Struct profile = 3;
+
+  // Profile data that is set only once on first write.
+  // Subsequent updates to the same keys are ignored.
+  google.protobuf.Struct profile_once = 4;
+
+  // User classification tags to replace the current set.
+  repeated string tags = 5;
+
+  // Whether the user is blocked.
+  bool blocked = 6;
+
+  // Whether the user opted out of email notifications.
+  bool unsubscribe_email = 7;
+
+  // Whether the user opted out of SMS/text notifications.
+  bool unsubscribe_texting = 8;
+
+  // Whether the user opted out of app push notifications.
+  bool unsubscribe_app_push = 9;
+
+  // User's preferred language locale.
+  string language = 10;
+}
+
+// Response for user update.
+message PatchUserResult {
+  coreapi.model.User user = 1;
+
+  // Online presence of the user.
+  coreapi.model.Online online = 2;
+}
+
+// Creates or updates a user by external member identifier.
+// If a user with the given memberId exists, it is updated; otherwise a new user is created.
+message UpsertUserByMemberIdRequest {
+  // External member identifier to upsert by.
+  //
+  // +kubebuilder:validation:MaxLength=64
+  // +kubebuilder:validation:Pattern="\\S*"
+  string member_id = 1 [
+    (buf.validate.field).cel = {
+      id: "string.maxLen"
+      message: "value must be no more than 64 characters"
+      expression: "size(this) <= 64"
+    },
+    (buf.validate.field).string.pattern = "^\\S*$",
+    (buf.validate.field).required = true
+  ];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+
+  // Custom key-value profile data to set or merge.
+  google.protobuf.Struct profile = 3;
+
+  // Profile data that is set only once on first write.
+  // Subsequent updates to the same keys are ignored.
+  google.protobuf.Struct profile_once = 4;
+
+  // User classification tags to replace the current set.
+  repeated string tags = 5;
+
+  // Whether the user is blocked.
+  bool blocked = 6;
+
+  // Whether the user opted out of email notifications.
+  bool unsubscribe_email = 7;
+
+  // Whether the user opted out of SMS/text notifications.
+  bool unsubscribe_texting = 8;
+
+  // Whether the user opted out of app push notifications.
+  bool unsubscribe_app_push = 9;
+
+  // User's preferred language locale.
+  string language = 10;
+}
+
+// Response for user upsert by member identifier.
+message UpsertUserByMemberIdResult {
+  coreapi.model.User user = 1;
+
+  // Online presence of the user.
+  coreapi.model.Online online = 2;
+}
+
+// Creates a new lead user with the given profile.
+message CreateLeadRequest {
+  // Channel ID to create the lead in.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // Profile data for the new lead.
+  google.protobuf.Struct profile = 2 [(buf.validate.field).required = true];
+}
+
+// Response for lead creation.
+message CreateLeadResult {
+  coreapi.model.User user = 1;
+
+  // Online presence of the user.
+  coreapi.model.Online online = 2;
+}
+
+// Issues a session JWT for member authentication.
+//
+// The expiration duration must be between 1 minute and 30 days.
+// Defaults to 1 minute if unset.
+message IssueSessionJwtRequest {
+  // External member identifier to issue a token for.
+  //
+  // +kubebuilder:validation:MaxLength=64
+  // +kubebuilder:validation:Pattern="\\S*"
+  string member_id = 1 [
+    (buf.validate.field).cel = {
+      id: "string.maxLen"
+      message: "value must be no more than 64 characters"
+      expression: "size(this) <= 64"
+    },
+    (buf.validate.field).string.pattern = "^\\S*$",
+    (buf.validate.field).required = true
+  ];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+
+  // Token validity duration. Defaults to 1 minute.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Duration expiration = 3 [
+    (buf.validate.field).cel = {
+      id: "duration.gte"
+      message: "expiration must be at least 1 minute"
+      expression: "this == duration('0s') || this >= duration('60s')"
+    },
+    (buf.validate.field).cel = {
+      id: "duration.lte"
+      message: "expiration must be no more than 30 days"
+      expression: "this == duration('0s') || this <= duration('2592000s')"
+    }
+  ];
+}
+
+// Response for session JWT issuance.
+message IssueSessionJwtResult {
+  // Issued session JWT token.
+  string session_jwt = 1;
+
+  // Timestamp when the token expires.
+  google.protobuf.Timestamp expires_at = 2;
+}
+
+// Issues a user token for SDK authentication.
+message IssueUserTokenRequest {
+  // User ID to issue a token for.
+  string user_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for user token issuance.
+message IssueUserTokenResult {
+  // Issued user token.
+  string token = 1;
+
+  // Timestamp when the token becomes disabled.
+  google.protobuf.Timestamp disable_at = 2;
+}
+
+// Issues a user token by external member identifier for SDK authentication.
+message IssueUserTokenByMemberIdRequest {
+  // External member identifier.
+  //
+  // +kubebuilder:validation:MaxLength=64
+  // +kubebuilder:validation:Pattern="\\S*"
+  string member_id = 1 [
+    (buf.validate.field).cel = {
+      id: "string.maxLen"
+      message: "value must be no more than 64 characters"
+      expression: "size(this) <= 64"
+    },
+    (buf.validate.field).string.pattern = "^\\S*$",
+    (buf.validate.field).required = true
+  ];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for user token issuance by member identifier.
+message IssueUserTokenByMemberIdResult {
+  // Issued user token.
+  string token = 1;
+
+  // Timestamp when the token becomes disabled.
+  google.protobuf.Timestamp disable_at = 2;
+}
+
+// Records user activity.
+// Updates lastSeenAt, sessionsCount, and daily unique user statistics.
+message TouchUserRequest {
+  // User ID to touch.
+  string user_id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the user belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for user touch.
+message TouchUserResult {
+  coreapi.model.User user = 1;
+
+  // Online presence of the user.
+  coreapi.model.Online online = 2;
+}
