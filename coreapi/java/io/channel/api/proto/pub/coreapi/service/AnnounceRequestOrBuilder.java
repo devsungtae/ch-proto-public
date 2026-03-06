@@ -57,9 +57,6 @@ public interface AnnounceRequestOrBuilder extends
   /**
    * <pre>
    * Display name of the bot sending the announcement.
-   * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MaxLength=30
-   * +kubebuilder:validation:Pattern="^[^&#64;#$%:/&#92;&#92;]+$"
    * </pre>
    *
    * <code>string bot_name = 3 [json_name = "botName", (.buf.validate.field) = { ... }</code>
@@ -69,9 +66,6 @@ public interface AnnounceRequestOrBuilder extends
   /**
    * <pre>
    * Display name of the bot sending the announcement.
-   * +kubebuilder:validation:Nullable
-   * +kubebuilder:validation:MaxLength=30
-   * +kubebuilder:validation:Pattern="^[^&#64;#$%:/&#92;&#92;]+$"
    * </pre>
    *
    * <code>string bot_name = 3 [json_name = "botName", (.buf.validate.field) = { ... }</code>
@@ -83,8 +77,6 @@ public interface AnnounceRequestOrBuilder extends
   /**
    * <pre>
    * IDs of the managers to receive the announcement.
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated string manager_ids = 4 [json_name = "managerIds", (.buf.validate.field) = { ... }</code>
@@ -95,8 +87,6 @@ public interface AnnounceRequestOrBuilder extends
   /**
    * <pre>
    * IDs of the managers to receive the announcement.
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated string manager_ids = 4 [json_name = "managerIds", (.buf.validate.field) = { ... }</code>
@@ -106,8 +96,6 @@ public interface AnnounceRequestOrBuilder extends
   /**
    * <pre>
    * IDs of the managers to receive the announcement.
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated string manager_ids = 4 [json_name = "managerIds", (.buf.validate.field) = { ... }</code>
@@ -118,8 +106,6 @@ public interface AnnounceRequestOrBuilder extends
   /**
    * <pre>
    * IDs of the managers to receive the announcement.
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:MinItems=1
    * </pre>
    *
    * <code>repeated string manager_ids = 4 [json_name = "managerIds", (.buf.validate.field) = { ... }</code>

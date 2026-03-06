@@ -35,10 +35,6 @@ type AnnounceToAllRequest struct {
 	// Message content to announce.
 	Message *model.MessageContent `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// Display name of the bot sending the announcement.
-	//
-	// +kubebuilder:validation:Nullable
-	// +kubebuilder:validation:MaxLength=30
-	// +kubebuilder:validation:Pattern="^[^@#$%:/\\]+$"
 	BotName       string `protobuf:"bytes,3,opt,name=bot_name,json=botName,proto3" json:"bot_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -154,15 +150,8 @@ type AnnounceRequest struct {
 	// Message content to announce.
 	Message *model.MessageContent `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// Display name of the bot sending the announcement.
-	//
-	// +kubebuilder:validation:Nullable
-	// +kubebuilder:validation:MaxLength=30
-	// +kubebuilder:validation:Pattern="^[^@#$%:/\\]+$"
 	BotName string `protobuf:"bytes,3,opt,name=bot_name,json=botName,proto3" json:"bot_name,omitempty"`
 	// IDs of the managers to receive the announcement.
-	//
-	// +kubebuilder:validation:Required
-	// +kubebuilder:validation:MinItems=1
 	ManagerIds    []string `protobuf:"bytes,4,rep,name=manager_ids,json=managerIds,proto3" json:"manager_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache

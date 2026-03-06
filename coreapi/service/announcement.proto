@@ -22,10 +22,6 @@ message AnnounceToAllRequest {
   coreapi.model.MessageContent message = 2 [(buf.validate.field).required = true];
 
   // Display name of the bot sending the announcement.
-  //
-  // +kubebuilder:validation:Nullable
-  // +kubebuilder:validation:MaxLength=30
-  // +kubebuilder:validation:Pattern="^[^@#$%:/\\]+$"
   string bot_name = 3 [
     (buf.validate.field).cel = {
       id: "string.maxLen"
@@ -56,10 +52,6 @@ message AnnounceRequest {
   coreapi.model.MessageContent message = 2 [(buf.validate.field).required = true];
 
   // Display name of the bot sending the announcement.
-  //
-  // +kubebuilder:validation:Nullable
-  // +kubebuilder:validation:MaxLength=30
-  // +kubebuilder:validation:Pattern="^[^@#$%:/\\]+$"
   string bot_name = 3 [
     (buf.validate.field).cel = {
       id: "string.maxLen"
@@ -70,9 +62,6 @@ message AnnounceRequest {
   ];
 
   // IDs of the managers to receive the announcement.
-  //
-  // +kubebuilder:validation:Required
-  // +kubebuilder:validation:MinItems=1
   repeated string manager_ids = 4 [
     (buf.validate.field).repeated = {
       min_items: 1
