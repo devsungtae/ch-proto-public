@@ -309,17 +309,13 @@ message MessageContent {
   //
   // +kubebuilder:validation:Nullable
   // +kubebuilder:validation:MaxItems=2
-  repeated MessageButton buttons = 3 [(buf.validate.field).repeated = {
-    max_items: 2
-  }];
+  repeated MessageButton buttons = 3 [(buf.validate.field).repeated = {max_items: 2}];
 
   // File attachments included in the message.
   //
   // +kubebuilder:validation:Nullable
   // +kubebuilder:validation:MaxItems=10
-  repeated MessageFile files = 4 [(buf.validate.field).repeated = {
-    max_items: 10
-  }];
+  repeated MessageFile files = 4 [(buf.validate.field).repeated = {max_items: 10}];
 
   // Web page link preview attached to the message.
   //
