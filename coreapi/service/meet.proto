@@ -1,0 +1,158 @@
+syntax = "proto3";
+
+package coreapi.service;
+
+import "buf/validate/validate.proto";
+import "coreapi/common/sort_order.proto";
+import "coreapi/model/manager.proto";
+import "coreapi/model/meet.proto";
+import "coreapi/model/user.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/channel-io/ch-proto-public/coreapi/go/service";
+option java_multiple_files = true;
+option java_package = "io.channel.api.proto.pub.coreapi.service";
+
+// Retrieves a list of call logs within a specified time range.
+//
+// The maximum allowed range between from and to is 90 days.
+message SearchCallLogsRequest {
+  // Channel ID to search call logs in.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // Start time of the query range.
+  //
+  // +kubebuilder:validation:Required
+  google.protobuf.Timestamp from = 2 [(buf.validate.field).required = true];
+
+  // End time of the query range.
+  //
+  // +kubebuilder:validation:Required
+  google.protobuf.Timestamp to = 3 [(buf.validate.field).required = true];
+}
+
+// Response for call log list retrieval.
+message SearchCallLogsResult {
+  repeated coreapi.model.CallLog call_logs = 1;
+}
+
+// Retrieves managers currently available for meet calls.
+message GetMeetAvailableManagersRequest {
+  // Channel ID to retrieve available managers for.
+  string channel_id = 1 [(buf.validate.field).required = true];
+}
+
+// Response for meet available managers retrieval.
+message GetMeetAvailableManagersResult {
+  repeated coreapi.model.Manager managers = 1;
+}
+
+// Retrieves the average wrap-up time for calls within a specified time range.
+//
+// Wrap-up time is the duration between the close of a call and the
+// subsequent closure of the user chat. The return unit is in seconds.
+//
+// The maximum allowed range between from and to is 90 days.
+//
+// Returns an error if no call history exists in the specified range.
+message GetCallWrapUpTimeRequest {
+  // Channel ID to retrieve wrap-up time for.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // Start time of the query range.
+  //
+  // +kubebuilder:validation:Required
+  google.protobuf.Timestamp from = 2 [(buf.validate.field).required = true];
+
+  // End time of the query range.
+  //
+  // +kubebuilder:validation:Required
+  google.protobuf.Timestamp to = 3 [(buf.validate.field).required = true];
+}
+
+// Response for call wrap-up time retrieval.
+message GetCallWrapUpTimeResult {
+  // Channel-wide average wrap-up time in seconds.
+  //
+  // +kubebuilder:validation:Nullable
+  int64 channel = 1;
+
+  // Per-manager average wrap-up time in seconds.
+  // Keyed by manager ID.
+  //
+  // +kubebuilder:validation:Nullable
+  map<string, int64> managers = 2;
+}
+
+// Retrieves a list of speech-to-text messages in a meet session.
+//
+// The number of messages retrieved is restricted by the limit parameter,
+// and is capped to values in the closed interval [1, 500].
+// Pagination is cursor-based. Pass the next_cursor value from the previous response
+// as the cursor parameter to retrieve the next page.
+// If the cursor parameter is left empty, the list starts with the
+// first message as specified by the sort_order parameter.
+//
+// The root meet message is excluded from the results.
+message SearchMeetMessagesRequest {
+  // Channel ID the meet session belongs to.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // Root message ID of the meet session.
+  string message_id = 2 [(buf.validate.field).required = true];
+
+  // Sort order for results. Defaults to descending if unset.
+  coreapi.common.SortOrder sort_order = 3;
+
+  // Opaque pagination cursor from a previous response.
+  string cursor = 4;
+
+  // Maximum number of results to return. Defaults to 25 if unset.
+  int32 limit = 5 [(buf.validate.field).cel = {
+    id: "int32.between"
+    message: "limit must be between 1 and 500"
+    expression: "this == 0 || (this >= 1 && this <= 500)"
+  }];
+}
+
+// Response for meet message list retrieval.
+message SearchMeetMessagesResult {
+  repeated coreapi.model.MeetMessage messages = 1;
+
+  // Users who authored messages in the meet session.
+  repeated coreapi.model.User users = 2;
+
+  // Managers who authored messages in the meet session.
+  repeated coreapi.model.Manager managers = 3;
+
+  // Opaque cursor for the next page.
+  // Use has_next to determine whether another page exists.
+  //
+  // +kubebuilder:validation:Nullable
+  string next_cursor = 4;
+
+  // Whether a next page of results exists.
+  bool has_next = 5;
+}
+
+// Retrieves the recording of a call meet session.
+//
+// Returns a time-limited signed URL for downloading the recording.
+// The signed URL is valid for 15 minutes.
+//
+// Returns an error if the recording does not exist.
+message GetMeetRecordingRequest {
+  // Channel ID the meet session belongs to.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // Root message ID of the meet session.
+  string message_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for meet recording retrieval.
+message GetMeetRecordingResult {
+  // Time-limited signed URL for downloading the recording audio file.
+  //
+  // +kubebuilder:validation:Required
+  string signed_url = 1 [(buf.validate.field).required = true];
+}
