@@ -643,4 +643,468 @@ public interface ChannelOrBuilder extends
    * <code>.google.protobuf.Timestamp updated_at = 30 [json_name = "updatedAt", (.buf.validate.field) = { ... }</code>
    */
   com.google.protobuf.TimestampOrBuilder getUpdatedAtOrBuilder();
+
+  /**
+   * <pre>
+   * Cover image URL for the channel profile.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string cover_image_url = 31 [json_name = "coverImageUrl"];</code>
+   * @return The coverImageUrl.
+   */
+  java.lang.String getCoverImageUrl();
+  /**
+   * <pre>
+   * Cover image URL for the channel profile.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string cover_image_url = 31 [json_name = "coverImageUrl"];</code>
+   * @return The bytes for coverImageUrl.
+   */
+  com.google.protobuf.ByteString
+      getCoverImageUrlBytes();
+
+  /**
+   * <pre>
+   * Cover image dominant color in hex format.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string cover_image_color = 32 [json_name = "coverImageColor"];</code>
+   * @return The coverImageColor.
+   */
+  java.lang.String getCoverImageColor();
+  /**
+   * <pre>
+   * Cover image dominant color in hex format.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string cover_image_color = 32 [json_name = "coverImageColor"];</code>
+   * @return The bytes for coverImageColor.
+   */
+  com.google.protobuf.ByteString
+      getCoverImageColorBytes();
+
+  /**
+   * <pre>
+   * Whether the cover image has a bright tone.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>bool cover_image_bright = 33 [json_name = "coverImageBright"];</code>
+   * @return The coverImageBright.
+   */
+  boolean getCoverImageBright();
+
+  /**
+   * <pre>
+   * Icon color for the channel plugin widget in hex format.
+   * Derived from the theme color for optimal contrast.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string plugin_icon_color = 34 [json_name = "pluginIconColor"];</code>
+   * @return The pluginIconColor.
+   */
+  java.lang.String getPluginIconColor();
+  /**
+   * <pre>
+   * Icon color for the channel plugin widget in hex format.
+   * Derived from the theme color for optimal contrast.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string plugin_icon_color = 34 [json_name = "pluginIconColor"];</code>
+   * @return The bytes for pluginIconColor.
+   */
+  com.google.protobuf.ByteString
+      getPluginIconColorBytes();
+
+  /**
+   * <pre>
+   * Border color derived from the theme color in hex format.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string border_color = 35 [json_name = "borderColor"];</code>
+   * @return The borderColor.
+   */
+  java.lang.String getBorderColor();
+  /**
+   * <pre>
+   * Border color derived from the theme color in hex format.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string border_color = 35 [json_name = "borderColor"];</code>
+   * @return The bytes for borderColor.
+   */
+  com.google.protobuf.ByteString
+      getBorderColorBytes();
+
+  /**
+   * <pre>
+   * Gradient color derived from the theme color in hex format.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string gradient_color = 36 [json_name = "gradientColor"];</code>
+   * @return The gradientColor.
+   */
+  java.lang.String getGradientColor();
+  /**
+   * <pre>
+   * Gradient color derived from the theme color in hex format.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string gradient_color = 36 [json_name = "gradientColor"];</code>
+   * @return The bytes for gradientColor.
+   */
+  com.google.protobuf.ByteString
+      getGradientColorBytes();
+
+  /**
+   * <pre>
+   * Text color derived from the theme color in hex format.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string text_color = 37 [json_name = "textColor"];</code>
+   * @return The textColor.
+   */
+  java.lang.String getTextColor();
+  /**
+   * <pre>
+   * Text color derived from the theme color in hex format.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string text_color = 37 [json_name = "textColor"];</code>
+   * @return The bytes for textColor.
+   */
+  com.google.protobuf.ByteString
+      getTextColorBytes();
+
+  /**
+   * <pre>
+   * Theme color brightness value normalized to 0.0–1.0 range.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>float brightness = 38 [json_name = "brightness"];</code>
+   * @return The brightness.
+   */
+  float getBrightness();
+
+  /**
+   * <pre>
+   * First character of the channel name, used as an avatar fallback.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string initial = 39 [json_name = "initial"];</code>
+   * @return The initial.
+   */
+  java.lang.String getInitial();
+  /**
+   * <pre>
+   * First character of the channel name, used as an avatar fallback.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>string initial = 39 [json_name = "initial"];</code>
+   * @return The bytes for initial.
+   */
+  com.google.protobuf.ByteString
+      getInitialBytes();
+
+  /**
+   * <pre>
+   * Whether operation time scheduling is enabled.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>bool operation_time_scheduling = 40 [json_name = "operationTimeScheduling"];</code>
+   * @return The operationTimeScheduling.
+   */
+  boolean getOperationTimeScheduling();
+
+  /**
+   * <pre>
+   * Recurring time ranges that define the channel operating hours.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.TimeRange operation_time_ranges = 41 [json_name = "operationTimeRanges"];</code>
+   */
+  java.util.List<io.channel.api.proto.pub.coreapi.model.TimeRange> 
+      getOperationTimeRangesList();
+  /**
+   * <pre>
+   * Recurring time ranges that define the channel operating hours.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.TimeRange operation_time_ranges = 41 [json_name = "operationTimeRanges"];</code>
+   */
+  io.channel.api.proto.pub.coreapi.model.TimeRange getOperationTimeRanges(int index);
+  /**
+   * <pre>
+   * Recurring time ranges that define the channel operating hours.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.TimeRange operation_time_ranges = 41 [json_name = "operationTimeRanges"];</code>
+   */
+  int getOperationTimeRangesCount();
+  /**
+   * <pre>
+   * Recurring time ranges that define the channel operating hours.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.TimeRange operation_time_ranges = 41 [json_name = "operationTimeRanges"];</code>
+   */
+  java.util.List<? extends io.channel.api.proto.pub.coreapi.model.TimeRangeOrBuilder> 
+      getOperationTimeRangesOrBuilderList();
+  /**
+   * <pre>
+   * Recurring time ranges that define the channel operating hours.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.TimeRange operation_time_ranges = 41 [json_name = "operationTimeRanges"];</code>
+   */
+  io.channel.api.proto.pub.coreapi.model.TimeRangeOrBuilder getOperationTimeRangesOrBuilder(
+      int index);
+
+  /**
+   * <pre>
+   * Timestamp when the channel will next enter operating hours.
+   * Present only when the channel is currently outside operating hours
+   * and operation time scheduling is enabled.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_operating_at = 42 [json_name = "nextOperatingAt"];</code>
+   * @return Whether the nextOperatingAt field is set.
+   */
+  boolean hasNextOperatingAt();
+  /**
+   * <pre>
+   * Timestamp when the channel will next enter operating hours.
+   * Present only when the channel is currently outside operating hours
+   * and operation time scheduling is enabled.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_operating_at = 42 [json_name = "nextOperatingAt"];</code>
+   * @return The nextOperatingAt.
+   */
+  com.google.protobuf.Timestamp getNextOperatingAt();
+  /**
+   * <pre>
+   * Timestamp when the channel will next enter operating hours.
+   * Present only when the channel is currently outside operating hours
+   * and operation time scheduling is enabled.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_operating_at = 42 [json_name = "nextOperatingAt"];</code>
+   */
+  com.google.protobuf.TimestampOrBuilder getNextOperatingAtOrBuilder();
+
+  /**
+   * <pre>
+   * Timestamp when the next operating period starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_working_time = 43 [json_name = "nextWorkingTime"];</code>
+   * @return Whether the nextWorkingTime field is set.
+   */
+  boolean hasNextWorkingTime();
+  /**
+   * <pre>
+   * Timestamp when the next operating period starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_working_time = 43 [json_name = "nextWorkingTime"];</code>
+   * @return The nextWorkingTime.
+   */
+  com.google.protobuf.Timestamp getNextWorkingTime();
+  /**
+   * <pre>
+   * Timestamp when the next operating period starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_working_time = 43 [json_name = "nextWorkingTime"];</code>
+   */
+  com.google.protobuf.TimestampOrBuilder getNextWorkingTimeOrBuilder();
+
+  /**
+   * <pre>
+   * Timestamp when the next away period starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_away_time = 44 [json_name = "nextAwayTime"];</code>
+   * @return Whether the nextAwayTime field is set.
+   */
+  boolean hasNextAwayTime();
+  /**
+   * <pre>
+   * Timestamp when the next away period starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_away_time = 44 [json_name = "nextAwayTime"];</code>
+   * @return The nextAwayTime.
+   */
+  com.google.protobuf.Timestamp getNextAwayTime();
+  /**
+   * <pre>
+   * Timestamp when the next away period starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Timestamp next_away_time = 44 [json_name = "nextAwayTime"];</code>
+   */
+  com.google.protobuf.TimestampOrBuilder getNextAwayTimeOrBuilder();
+
+  /**
+   * <pre>
+   * Whether replying is blocked after the conversation is closed.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>bool block_replying_after_closed = 45 [json_name = "blockReplyingAfterClosed"];</code>
+   * @return The blockReplyingAfterClosed.
+   */
+  boolean getBlockReplyingAfterClosed();
+
+  /**
+   * <pre>
+   * Duration after which replying is blocked once the conversation is closed.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Duration block_replying_after_closed_time = 46 [json_name = "blockReplyingAfterClosedTime"];</code>
+   * @return Whether the blockReplyingAfterClosedTime field is set.
+   */
+  boolean hasBlockReplyingAfterClosedTime();
+  /**
+   * <pre>
+   * Duration after which replying is blocked once the conversation is closed.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Duration block_replying_after_closed_time = 46 [json_name = "blockReplyingAfterClosedTime"];</code>
+   * @return The blockReplyingAfterClosedTime.
+   */
+  com.google.protobuf.Duration getBlockReplyingAfterClosedTime();
+  /**
+   * <pre>
+   * Duration after which replying is blocked once the conversation is closed.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Duration block_replying_after_closed_time = 46 [json_name = "blockReplyingAfterClosedTime"];</code>
+   */
+  com.google.protobuf.DurationOrBuilder getBlockReplyingAfterClosedTimeOrBuilder();
+
+  /**
+   * <pre>
+   * Default welcome message shown when a new conversation starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Struct welcome_message = 47 [json_name = "welcomeMessage"];</code>
+   * @return Whether the welcomeMessage field is set.
+   */
+  boolean hasWelcomeMessage();
+  /**
+   * <pre>
+   * Default welcome message shown when a new conversation starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Struct welcome_message = 47 [json_name = "welcomeMessage"];</code>
+   * @return The welcomeMessage.
+   */
+  com.google.protobuf.Struct getWelcomeMessage();
+  /**
+   * <pre>
+   * Default welcome message shown when a new conversation starts.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>.google.protobuf.Struct welcome_message = 47 [json_name = "welcomeMessage"];</code>
+   */
+  com.google.protobuf.StructOrBuilder getWelcomeMessageOrBuilder();
+
+  /**
+   * <pre>
+   * Internationalized welcome messages keyed by locale.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>map&lt;string, .google.protobuf.Struct&gt; welcome_message_i18n_map = 48 [json_name = "welcomeMessageI18nMap"];</code>
+   */
+  int getWelcomeMessageI18NMapCount();
+  /**
+   * <pre>
+   * Internationalized welcome messages keyed by locale.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>map&lt;string, .google.protobuf.Struct&gt; welcome_message_i18n_map = 48 [json_name = "welcomeMessageI18nMap"];</code>
+   */
+  boolean containsWelcomeMessageI18NMap(
+      java.lang.String key);
+  /**
+   * Use {@link #getWelcomeMessageI18NMapMap()} instead.
+   */
+  @java.lang.Deprecated
+  java.util.Map<java.lang.String, com.google.protobuf.Struct>
+  getWelcomeMessageI18NMap();
+  /**
+   * <pre>
+   * Internationalized welcome messages keyed by locale.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>map&lt;string, .google.protobuf.Struct&gt; welcome_message_i18n_map = 48 [json_name = "welcomeMessageI18nMap"];</code>
+   */
+  java.util.Map<java.lang.String, com.google.protobuf.Struct>
+  getWelcomeMessageI18NMapMap();
+  /**
+   * <pre>
+   * Internationalized welcome messages keyed by locale.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>map&lt;string, .google.protobuf.Struct&gt; welcome_message_i18n_map = 48 [json_name = "welcomeMessageI18nMap"];</code>
+   */
+
+  com.google.protobuf.Struct getWelcomeMessageI18NMapOrDefault(
+      java.lang.String key,
+      com.google.protobuf.Struct defaultValue);
+  /**
+   * <pre>
+   * Internationalized welcome messages keyed by locale.
+   * +kubebuilder:validation:Nullable
+   * </pre>
+   *
+   * <code>map&lt;string, .google.protobuf.Struct&gt; welcome_message_i18n_map = 48 [json_name = "welcomeMessageI18nMap"];</code>
+   */
+
+  com.google.protobuf.Struct getWelcomeMessageI18NMapOrThrow(
+      java.lang.String key);
 }

@@ -10,6 +10,8 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	structpb "google.golang.org/protobuf/types/known/structpb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -328,9 +330,84 @@ type Channel struct {
 	// Channel last update timestamp.
 	//
 	// +kubebuilder:validation:Required
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,30,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	UpdatedAt *timestamppb.Timestamp `protobuf:"bytes,30,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// Cover image URL for the channel profile.
+	//
+	// +kubebuilder:validation:Nullable
+	CoverImageUrl string `protobuf:"bytes,31,opt,name=cover_image_url,json=coverImageUrl,proto3" json:"cover_image_url,omitempty"`
+	// Cover image dominant color in hex format.
+	//
+	// +kubebuilder:validation:Nullable
+	CoverImageColor string `protobuf:"bytes,32,opt,name=cover_image_color,json=coverImageColor,proto3" json:"cover_image_color,omitempty"`
+	// Whether the cover image has a bright tone.
+	//
+	// +kubebuilder:validation:Nullable
+	CoverImageBright bool `protobuf:"varint,33,opt,name=cover_image_bright,json=coverImageBright,proto3" json:"cover_image_bright,omitempty"`
+	// Icon color for the channel plugin widget in hex format.
+	// Derived from the theme color for optimal contrast.
+	//
+	// +kubebuilder:validation:Nullable
+	PluginIconColor string `protobuf:"bytes,34,opt,name=plugin_icon_color,json=pluginIconColor,proto3" json:"plugin_icon_color,omitempty"`
+	// Border color derived from the theme color in hex format.
+	//
+	// +kubebuilder:validation:Nullable
+	BorderColor string `protobuf:"bytes,35,opt,name=border_color,json=borderColor,proto3" json:"border_color,omitempty"`
+	// Gradient color derived from the theme color in hex format.
+	//
+	// +kubebuilder:validation:Nullable
+	GradientColor string `protobuf:"bytes,36,opt,name=gradient_color,json=gradientColor,proto3" json:"gradient_color,omitempty"`
+	// Text color derived from the theme color in hex format.
+	//
+	// +kubebuilder:validation:Nullable
+	TextColor string `protobuf:"bytes,37,opt,name=text_color,json=textColor,proto3" json:"text_color,omitempty"`
+	// Theme color brightness value normalized to 0.0–1.0 range.
+	//
+	// +kubebuilder:validation:Nullable
+	Brightness float32 `protobuf:"fixed32,38,opt,name=brightness,proto3" json:"brightness,omitempty"`
+	// First character of the channel name, used as an avatar fallback.
+	//
+	// +kubebuilder:validation:Nullable
+	Initial string `protobuf:"bytes,39,opt,name=initial,proto3" json:"initial,omitempty"`
+	// Whether operation time scheduling is enabled.
+	//
+	// +kubebuilder:validation:Nullable
+	OperationTimeScheduling bool `protobuf:"varint,40,opt,name=operation_time_scheduling,json=operationTimeScheduling,proto3" json:"operation_time_scheduling,omitempty"`
+	// Recurring time ranges that define the channel operating hours.
+	//
+	// +kubebuilder:validation:Nullable
+	OperationTimeRanges []*TimeRange `protobuf:"bytes,41,rep,name=operation_time_ranges,json=operationTimeRanges,proto3" json:"operation_time_ranges,omitempty"`
+	// Timestamp when the channel will next enter operating hours.
+	// Present only when the channel is currently outside operating hours
+	// and operation time scheduling is enabled.
+	//
+	// +kubebuilder:validation:Nullable
+	NextOperatingAt *timestamppb.Timestamp `protobuf:"bytes,42,opt,name=next_operating_at,json=nextOperatingAt,proto3" json:"next_operating_at,omitempty"`
+	// Timestamp when the next operating period starts.
+	//
+	// +kubebuilder:validation:Nullable
+	NextWorkingTime *timestamppb.Timestamp `protobuf:"bytes,43,opt,name=next_working_time,json=nextWorkingTime,proto3" json:"next_working_time,omitempty"`
+	// Timestamp when the next away period starts.
+	//
+	// +kubebuilder:validation:Nullable
+	NextAwayTime *timestamppb.Timestamp `protobuf:"bytes,44,opt,name=next_away_time,json=nextAwayTime,proto3" json:"next_away_time,omitempty"`
+	// Whether replying is blocked after the conversation is closed.
+	//
+	// +kubebuilder:validation:Nullable
+	BlockReplyingAfterClosed bool `protobuf:"varint,45,opt,name=block_replying_after_closed,json=blockReplyingAfterClosed,proto3" json:"block_replying_after_closed,omitempty"`
+	// Duration after which replying is blocked once the conversation is closed.
+	//
+	// +kubebuilder:validation:Nullable
+	BlockReplyingAfterClosedTime *durationpb.Duration `protobuf:"bytes,46,opt,name=block_replying_after_closed_time,json=blockReplyingAfterClosedTime,proto3" json:"block_replying_after_closed_time,omitempty"`
+	// Default welcome message shown when a new conversation starts.
+	//
+	// +kubebuilder:validation:Nullable
+	WelcomeMessage *structpb.Struct `protobuf:"bytes,47,opt,name=welcome_message,json=welcomeMessage,proto3" json:"welcome_message,omitempty"`
+	// Internationalized welcome messages keyed by locale.
+	//
+	// +kubebuilder:validation:Nullable
+	WelcomeMessageI18NMap map[string]*structpb.Struct `protobuf:"bytes,48,rep,name=welcome_message_i18n_map,json=welcomeMessageI18nMap,proto3" json:"welcome_message_i18n_map,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *Channel) Reset() {
@@ -573,11 +650,137 @@ func (x *Channel) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *Channel) GetCoverImageUrl() string {
+	if x != nil {
+		return x.CoverImageUrl
+	}
+	return ""
+}
+
+func (x *Channel) GetCoverImageColor() string {
+	if x != nil {
+		return x.CoverImageColor
+	}
+	return ""
+}
+
+func (x *Channel) GetCoverImageBright() bool {
+	if x != nil {
+		return x.CoverImageBright
+	}
+	return false
+}
+
+func (x *Channel) GetPluginIconColor() string {
+	if x != nil {
+		return x.PluginIconColor
+	}
+	return ""
+}
+
+func (x *Channel) GetBorderColor() string {
+	if x != nil {
+		return x.BorderColor
+	}
+	return ""
+}
+
+func (x *Channel) GetGradientColor() string {
+	if x != nil {
+		return x.GradientColor
+	}
+	return ""
+}
+
+func (x *Channel) GetTextColor() string {
+	if x != nil {
+		return x.TextColor
+	}
+	return ""
+}
+
+func (x *Channel) GetBrightness() float32 {
+	if x != nil {
+		return x.Brightness
+	}
+	return 0
+}
+
+func (x *Channel) GetInitial() string {
+	if x != nil {
+		return x.Initial
+	}
+	return ""
+}
+
+func (x *Channel) GetOperationTimeScheduling() bool {
+	if x != nil {
+		return x.OperationTimeScheduling
+	}
+	return false
+}
+
+func (x *Channel) GetOperationTimeRanges() []*TimeRange {
+	if x != nil {
+		return x.OperationTimeRanges
+	}
+	return nil
+}
+
+func (x *Channel) GetNextOperatingAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.NextOperatingAt
+	}
+	return nil
+}
+
+func (x *Channel) GetNextWorkingTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.NextWorkingTime
+	}
+	return nil
+}
+
+func (x *Channel) GetNextAwayTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.NextAwayTime
+	}
+	return nil
+}
+
+func (x *Channel) GetBlockReplyingAfterClosed() bool {
+	if x != nil {
+		return x.BlockReplyingAfterClosed
+	}
+	return false
+}
+
+func (x *Channel) GetBlockReplyingAfterClosedTime() *durationpb.Duration {
+	if x != nil {
+		return x.BlockReplyingAfterClosedTime
+	}
+	return nil
+}
+
+func (x *Channel) GetWelcomeMessage() *structpb.Struct {
+	if x != nil {
+		return x.WelcomeMessage
+	}
+	return nil
+}
+
+func (x *Channel) GetWelcomeMessageI18NMap() map[string]*structpb.Struct {
+	if x != nil {
+		return x.WelcomeMessageI18NMap
+	}
+	return nil
+}
+
 var File_coreapi_model_channel_proto protoreflect.FileDescriptor
 
 const file_coreapi_model_channel_proto_rawDesc = "" +
 	"\n" +
-	"\x1bcoreapi/model/channel.proto\x12\rcoreapi.model\x1a\x1bbuf/validate/validate.proto\x1a\x1dcoreapi/model/name_desc.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xab\r\n" +
+	"\x1bcoreapi/model/channel.proto\x12\rcoreapi.model\x1a\x1bbuf/validate/validate.proto\x1a\x1ccoreapi/model/campaign.proto\x1a\x1dcoreapi/model/name_desc.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x8b\x16\n" +
 	"\aChannel\x12]\n" +
 	"\x02id\x18\x01 \x01(\tBM\xbaHJ\xba\x01D\n" +
 	"\rstring.minLen\x12\"value must be at least 1 character\x1a\x0fsize(this) >= 1\xc8\x01\x01R\x02id\x12\xb1\x01\n" +
@@ -618,10 +821,34 @@ const file_coreapi_model_channel_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x1d \x01(\v2\x1a.google.protobuf.TimestampB\x06\xbaH\x03\xc8\x01\x01R\tcreatedAt\x12A\n" +
 	"\n" +
-	"updated_at\x18\x1e \x01(\v2\x1a.google.protobuf.TimestampB\x06\xbaH\x03\xc8\x01\x01R\tupdatedAt\x1a[\n" +
+	"updated_at\x18\x1e \x01(\v2\x1a.google.protobuf.TimestampB\x06\xbaH\x03\xc8\x01\x01R\tupdatedAt\x12&\n" +
+	"\x0fcover_image_url\x18\x1f \x01(\tR\rcoverImageUrl\x12*\n" +
+	"\x11cover_image_color\x18  \x01(\tR\x0fcoverImageColor\x12,\n" +
+	"\x12cover_image_bright\x18! \x01(\bR\x10coverImageBright\x12*\n" +
+	"\x11plugin_icon_color\x18\" \x01(\tR\x0fpluginIconColor\x12!\n" +
+	"\fborder_color\x18# \x01(\tR\vborderColor\x12%\n" +
+	"\x0egradient_color\x18$ \x01(\tR\rgradientColor\x12\x1d\n" +
+	"\n" +
+	"text_color\x18% \x01(\tR\ttextColor\x12\x1e\n" +
+	"\n" +
+	"brightness\x18& \x01(\x02R\n" +
+	"brightness\x12\x18\n" +
+	"\ainitial\x18' \x01(\tR\ainitial\x12:\n" +
+	"\x19operation_time_scheduling\x18( \x01(\bR\x17operationTimeScheduling\x12L\n" +
+	"\x15operation_time_ranges\x18) \x03(\v2\x18.coreapi.model.TimeRangeR\x13operationTimeRanges\x12F\n" +
+	"\x11next_operating_at\x18* \x01(\v2\x1a.google.protobuf.TimestampR\x0fnextOperatingAt\x12F\n" +
+	"\x11next_working_time\x18+ \x01(\v2\x1a.google.protobuf.TimestampR\x0fnextWorkingTime\x12@\n" +
+	"\x0enext_away_time\x18, \x01(\v2\x1a.google.protobuf.TimestampR\fnextAwayTime\x12=\n" +
+	"\x1bblock_replying_after_closed\x18- \x01(\bR\x18blockReplyingAfterClosed\x12a\n" +
+	" block_replying_after_closed_time\x18. \x01(\v2\x19.google.protobuf.DurationR\x1cblockReplyingAfterClosedTime\x12@\n" +
+	"\x0fwelcome_message\x18/ \x01(\v2\x17.google.protobuf.StructR\x0ewelcomeMessage\x12j\n" +
+	"\x18welcome_message_i18n_map\x180 \x03(\v21.coreapi.model.Channel.WelcomeMessageI18nMapEntryR\x15welcomeMessageI18nMap\x1a[\n" +
 	"\x14NameDescI18nMapEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.coreapi.model.NameDescR\x05value:\x028\x01*\xf1\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.coreapi.model.NameDescR\x05value:\x028\x01\x1aa\n" +
+	"\x1aWelcomeMessageI18nMapEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12-\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.google.protobuf.StructR\x05value:\x028\x01*\xf1\x01\n" +
 	"\fChannelState\x12\x1d\n" +
 	"\x19CHANNEL_STATE_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15CHANNEL_STATE_WAITING\x10\x01\x12\x18\n" +
@@ -656,29 +883,41 @@ func file_coreapi_model_channel_proto_rawDescGZIP() []byte {
 }
 
 var file_coreapi_model_channel_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_coreapi_model_channel_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_coreapi_model_channel_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_coreapi_model_channel_proto_goTypes = []any{
 	(ChannelState)(0),             // 0: coreapi.model.ChannelState
 	(ChannelAwayOption)(0),        // 1: coreapi.model.ChannelAwayOption
 	(ResponseDelayType)(0),        // 2: coreapi.model.ResponseDelayType
 	(*Channel)(nil),               // 3: coreapi.model.Channel
 	nil,                           // 4: coreapi.model.Channel.NameDescI18nMapEntry
-	(*timestamppb.Timestamp)(nil), // 5: google.protobuf.Timestamp
-	(*NameDesc)(nil),              // 6: coreapi.model.NameDesc
+	nil,                           // 5: coreapi.model.Channel.WelcomeMessageI18nMapEntry
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
+	(*TimeRange)(nil),             // 7: coreapi.model.TimeRange
+	(*durationpb.Duration)(nil),   // 8: google.protobuf.Duration
+	(*structpb.Struct)(nil),       // 9: google.protobuf.Struct
+	(*NameDesc)(nil),              // 10: coreapi.model.NameDesc
 }
 var file_coreapi_model_channel_proto_depIdxs = []int32{
-	4, // 0: coreapi.model.Channel.name_desc_i18n_map:type_name -> coreapi.model.Channel.NameDescI18nMapEntry
-	0, // 1: coreapi.model.Channel.state:type_name -> coreapi.model.ChannelState
-	2, // 2: coreapi.model.Channel.expected_response_delay:type_name -> coreapi.model.ResponseDelayType
-	1, // 3: coreapi.model.Channel.away_option:type_name -> coreapi.model.ChannelAwayOption
-	5, // 4: coreapi.model.Channel.created_at:type_name -> google.protobuf.Timestamp
-	5, // 5: coreapi.model.Channel.updated_at:type_name -> google.protobuf.Timestamp
-	6, // 6: coreapi.model.Channel.NameDescI18nMapEntry.value:type_name -> coreapi.model.NameDesc
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	4,  // 0: coreapi.model.Channel.name_desc_i18n_map:type_name -> coreapi.model.Channel.NameDescI18nMapEntry
+	0,  // 1: coreapi.model.Channel.state:type_name -> coreapi.model.ChannelState
+	2,  // 2: coreapi.model.Channel.expected_response_delay:type_name -> coreapi.model.ResponseDelayType
+	1,  // 3: coreapi.model.Channel.away_option:type_name -> coreapi.model.ChannelAwayOption
+	6,  // 4: coreapi.model.Channel.created_at:type_name -> google.protobuf.Timestamp
+	6,  // 5: coreapi.model.Channel.updated_at:type_name -> google.protobuf.Timestamp
+	7,  // 6: coreapi.model.Channel.operation_time_ranges:type_name -> coreapi.model.TimeRange
+	6,  // 7: coreapi.model.Channel.next_operating_at:type_name -> google.protobuf.Timestamp
+	6,  // 8: coreapi.model.Channel.next_working_time:type_name -> google.protobuf.Timestamp
+	6,  // 9: coreapi.model.Channel.next_away_time:type_name -> google.protobuf.Timestamp
+	8,  // 10: coreapi.model.Channel.block_replying_after_closed_time:type_name -> google.protobuf.Duration
+	9,  // 11: coreapi.model.Channel.welcome_message:type_name -> google.protobuf.Struct
+	5,  // 12: coreapi.model.Channel.welcome_message_i18n_map:type_name -> coreapi.model.Channel.WelcomeMessageI18nMapEntry
+	10, // 13: coreapi.model.Channel.NameDescI18nMapEntry.value:type_name -> coreapi.model.NameDesc
+	9,  // 14: coreapi.model.Channel.WelcomeMessageI18nMapEntry.value:type_name -> google.protobuf.Struct
+	15, // [15:15] is the sub-list for method output_type
+	15, // [15:15] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_coreapi_model_channel_proto_init() }
@@ -686,6 +925,7 @@ func file_coreapi_model_channel_proto_init() {
 	if File_coreapi_model_channel_proto != nil {
 		return
 	}
+	file_coreapi_model_campaign_proto_init()
 	file_coreapi_model_name_desc_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -693,7 +933,7 @@ func file_coreapi_model_channel_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_coreapi_model_channel_proto_rawDesc), len(file_coreapi_model_channel_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

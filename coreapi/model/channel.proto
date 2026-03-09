@@ -3,7 +3,10 @@ syntax = "proto3";
 package coreapi.model;
 
 import "buf/validate/validate.proto";
+import "coreapi/model/campaign.proto";
 import "coreapi/model/name_desc.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/channel-io/ch-proto-public/coreapi/go/model";
@@ -224,4 +227,103 @@ message Channel {
   //
   // +kubebuilder:validation:Required
   google.protobuf.Timestamp updated_at = 30 [(buf.validate.field).required = true];
+
+  /// Visual / theme
+
+  // Cover image URL for the channel profile.
+  //
+  // +kubebuilder:validation:Nullable
+  string cover_image_url = 31;
+
+  // Cover image dominant color in hex format.
+  //
+  // +kubebuilder:validation:Nullable
+  string cover_image_color = 32;
+
+  // Whether the cover image has a bright tone.
+  //
+  // +kubebuilder:validation:Nullable
+  bool cover_image_bright = 33;
+
+  // Icon color for the channel plugin widget in hex format.
+  // Derived from the theme color for optimal contrast.
+  //
+  // +kubebuilder:validation:Nullable
+  string plugin_icon_color = 34;
+
+  // Border color derived from the theme color in hex format.
+  //
+  // +kubebuilder:validation:Nullable
+  string border_color = 35;
+
+  // Gradient color derived from the theme color in hex format.
+  //
+  // +kubebuilder:validation:Nullable
+  string gradient_color = 36;
+
+  // Text color derived from the theme color in hex format.
+  //
+  // +kubebuilder:validation:Nullable
+  string text_color = 37;
+
+  // Theme color brightness value normalized to 0.0–1.0 range.
+  //
+  // +kubebuilder:validation:Nullable
+  float brightness = 38;
+
+  // First character of the channel name, used as an avatar fallback.
+  //
+  // +kubebuilder:validation:Nullable
+  string initial = 39;
+
+  /// Operation scheduling
+
+  // Whether operation time scheduling is enabled.
+  //
+  // +kubebuilder:validation:Nullable
+  bool operation_time_scheduling = 40;
+
+  // Recurring time ranges that define the channel operating hours.
+  //
+  // +kubebuilder:validation:Nullable
+  repeated coreapi.model.TimeRange operation_time_ranges = 41;
+
+  // Timestamp when the channel will next enter operating hours.
+  // Present only when the channel is currently outside operating hours
+  // and operation time scheduling is enabled.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp next_operating_at = 42;
+
+  // Timestamp when the next operating period starts.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp next_working_time = 43;
+
+  // Timestamp when the next away period starts.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Timestamp next_away_time = 44;
+
+  // Whether replying is blocked after the conversation is closed.
+  //
+  // +kubebuilder:validation:Nullable
+  bool block_replying_after_closed = 45;
+
+  // Duration after which replying is blocked once the conversation is closed.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Duration block_replying_after_closed_time = 46;
+
+  /// Welcome message
+
+  // Default welcome message shown when a new conversation starts.
+  //
+  // +kubebuilder:validation:Nullable
+  google.protobuf.Struct welcome_message = 47;
+
+  // Internationalized welcome messages keyed by locale.
+  //
+  // +kubebuilder:validation:Nullable
+  map<string, google.protobuf.Struct> welcome_message_i18n_map = 48;
 }
