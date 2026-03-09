@@ -27,18 +27,16 @@ const (
 
 // Retrieves a list of call logs within a specified time range.
 //
-// The from and to parameters define the query time range
-// as Unix timestamps in milliseconds.
 // The maximum allowed range between from and to is 90 days.
 type SearchCallLogsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Channel ID to search call logs in.
 	ChannelId string `protobuf:"bytes,1,opt,name=channel_id,json=channelId,proto3" json:"channel_id,omitempty"`
-	// Start time of the query range as a Unix timestamp in milliseconds.
+	// Start time of the query range.
 	//
 	// +kubebuilder:validation:Required
 	From *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
-	// End time of the query range as a Unix timestamp in milliseconds.
+	// End time of the query range.
 	//
 	// +kubebuilder:validation:Required
 	To            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
@@ -238,8 +236,6 @@ func (x *GetMeetAvailableManagersResult) GetManagers() []*model.Manager {
 // Wrap-up time is the duration between the close of a call and the
 // subsequent closure of the user chat. The return unit is in seconds.
 //
-// The from and to parameters define the query time range
-// as Unix timestamps in milliseconds.
 // The maximum allowed range between from and to is 90 days.
 //
 // Returns an error if no call history exists in the specified range.
@@ -247,11 +243,11 @@ type GetCallWrapUpTimeRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Channel ID to retrieve wrap-up time for.
 	ChannelId string `protobuf:"bytes,1,opt,name=channel_id,json=channelId,proto3" json:"channel_id,omitempty"`
-	// Start time of the query range as a Unix timestamp in milliseconds.
+	// Start time of the query range.
 	//
 	// +kubebuilder:validation:Required
 	From *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
-	// End time of the query range as a Unix timestamp in milliseconds.
+	// End time of the query range.
 	//
 	// +kubebuilder:validation:Required
 	To            *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
@@ -467,13 +463,15 @@ type SearchMeetMessagesResult struct {
 	Messages []*model.MeetMessage   `protobuf:"bytes,1,rep,name=messages,proto3" json:"messages,omitempty"`
 	// Users who authored messages in the meet session.
 	Users []*model.User `protobuf:"bytes,2,rep,name=users,proto3" json:"users,omitempty"`
+	// Managers who authored messages in the meet session.
+	Managers []*model.Manager `protobuf:"bytes,3,rep,name=managers,proto3" json:"managers,omitempty"`
 	// Opaque cursor for the next page.
 	// Use has_next to determine whether another page exists.
 	//
 	// +kubebuilder:validation:Nullable
-	NextCursor string `protobuf:"bytes,3,opt,name=next_cursor,json=nextCursor,proto3" json:"next_cursor,omitempty"`
+	NextCursor string `protobuf:"bytes,4,opt,name=next_cursor,json=nextCursor,proto3" json:"next_cursor,omitempty"`
 	// Whether a next page of results exists.
-	HasNext       bool `protobuf:"varint,4,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`
+	HasNext       bool `protobuf:"varint,5,opt,name=has_next,json=hasNext,proto3" json:"has_next,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -518,6 +516,13 @@ func (x *SearchMeetMessagesResult) GetMessages() []*model.MeetMessage {
 func (x *SearchMeetMessagesResult) GetUsers() []*model.User {
 	if x != nil {
 		return x.Users
+	}
+	return nil
+}
+
+func (x *SearchMeetMessagesResult) GetManagers() []*model.Manager {
+	if x != nil {
+		return x.Managers
 	}
 	return nil
 }
@@ -681,13 +686,14 @@ const file_coreapi_service_meet_proto_rawDesc = "" +
 	"sort_order\x18\x03 \x01(\x0e2\x19.coreapi.common.SortOrderR\tsortOrder\x12\x16\n" +
 	"\x06cursor\x18\x04 \x01(\tR\x06cursor\x12u\n" +
 	"\x05limit\x18\x05 \x01(\x05B_\xbaH\\\xba\x01Y\n" +
-	"\rint32.between\x12\x1flimit must be between 1 and 500\x1a'this == 0 || (this >= 1 && this <= 500)R\x05limit\"\xb9\x01\n" +
+	"\rint32.between\x12\x1flimit must be between 1 and 500\x1a'this == 0 || (this >= 1 && this <= 500)R\x05limit\"\xed\x01\n" +
 	"\x18SearchMeetMessagesResult\x126\n" +
 	"\bmessages\x18\x01 \x03(\v2\x1a.coreapi.model.MeetMessageR\bmessages\x12)\n" +
-	"\x05users\x18\x02 \x03(\v2\x13.coreapi.model.UserR\x05users\x12\x1f\n" +
-	"\vnext_cursor\x18\x03 \x01(\tR\n" +
+	"\x05users\x18\x02 \x03(\v2\x13.coreapi.model.UserR\x05users\x122\n" +
+	"\bmanagers\x18\x03 \x03(\v2\x16.coreapi.model.ManagerR\bmanagers\x12\x1f\n" +
+	"\vnext_cursor\x18\x04 \x01(\tR\n" +
 	"nextCursor\x12\x19\n" +
-	"\bhas_next\x18\x04 \x01(\bR\ahasNext\"g\n" +
+	"\bhas_next\x18\x05 \x01(\bR\ahasNext\"g\n" +
 	"\x17GetMeetRecordingRequest\x12%\n" +
 	"\n" +
 	"channel_id\x18\x01 \x01(\tB\x06\xbaH\x03\xc8\x01\x01R\tchannelId\x12%\n" +
@@ -741,11 +747,12 @@ var file_coreapi_service_meet_proto_depIdxs = []int32{
 	14, // 7: coreapi.service.SearchMeetMessagesRequest.sort_order:type_name -> coreapi.common.SortOrder
 	15, // 8: coreapi.service.SearchMeetMessagesResult.messages:type_name -> coreapi.model.MeetMessage
 	16, // 9: coreapi.service.SearchMeetMessagesResult.users:type_name -> coreapi.model.User
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	13, // 10: coreapi.service.SearchMeetMessagesResult.managers:type_name -> coreapi.model.Manager
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_coreapi_service_meet_proto_init() }

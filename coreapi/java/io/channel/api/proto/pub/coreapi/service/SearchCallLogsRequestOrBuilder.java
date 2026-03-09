@@ -29,7 +29,7 @@ public interface SearchCallLogsRequestOrBuilder extends
 
   /**
    * <pre>
-   * Start time of the query range as a Unix timestamp in milliseconds.
+   * Start time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -39,7 +39,7 @@ public interface SearchCallLogsRequestOrBuilder extends
   boolean hasFrom();
   /**
    * <pre>
-   * Start time of the query range as a Unix timestamp in milliseconds.
+   * Start time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -49,7 +49,7 @@ public interface SearchCallLogsRequestOrBuilder extends
   com.google.protobuf.Timestamp getFrom();
   /**
    * <pre>
-   * Start time of the query range as a Unix timestamp in milliseconds.
+   * Start time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -59,7 +59,7 @@ public interface SearchCallLogsRequestOrBuilder extends
 
   /**
    * <pre>
-   * End time of the query range as a Unix timestamp in milliseconds.
+   * End time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -69,7 +69,7 @@ public interface SearchCallLogsRequestOrBuilder extends
   boolean hasTo();
   /**
    * <pre>
-   * End time of the query range as a Unix timestamp in milliseconds.
+   * End time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -79,7 +79,7 @@ public interface SearchCallLogsRequestOrBuilder extends
   com.google.protobuf.Timestamp getTo();
   /**
    * <pre>
-   * End time of the query range as a Unix timestamp in milliseconds.
+   * End time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *

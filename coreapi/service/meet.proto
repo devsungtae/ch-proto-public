@@ -15,19 +15,17 @@ option java_package = "io.channel.api.proto.pub.coreapi.service";
 
 // Retrieves a list of call logs within a specified time range.
 //
-// The from and to parameters define the query time range
-// as Unix timestamps in milliseconds.
 // The maximum allowed range between from and to is 90 days.
 message SearchCallLogsRequest {
   // Channel ID to search call logs in.
   string channel_id = 1 [(buf.validate.field).required = true];
 
-  // Start time of the query range as a Unix timestamp in milliseconds.
+  // Start time of the query range.
   //
   // +kubebuilder:validation:Required
   google.protobuf.Timestamp from = 2 [(buf.validate.field).required = true];
 
-  // End time of the query range as a Unix timestamp in milliseconds.
+  // End time of the query range.
   //
   // +kubebuilder:validation:Required
   google.protobuf.Timestamp to = 3 [(buf.validate.field).required = true];
@@ -54,8 +52,6 @@ message GetMeetAvailableManagersResult {
 // Wrap-up time is the duration between the close of a call and the
 // subsequent closure of the user chat. The return unit is in seconds.
 //
-// The from and to parameters define the query time range
-// as Unix timestamps in milliseconds.
 // The maximum allowed range between from and to is 90 days.
 //
 // Returns an error if no call history exists in the specified range.
@@ -63,12 +59,12 @@ message GetCallWrapUpTimeRequest {
   // Channel ID to retrieve wrap-up time for.
   string channel_id = 1 [(buf.validate.field).required = true];
 
-  // Start time of the query range as a Unix timestamp in milliseconds.
+  // Start time of the query range.
   //
   // +kubebuilder:validation:Required
   google.protobuf.Timestamp from = 2 [(buf.validate.field).required = true];
 
-  // End time of the query range as a Unix timestamp in milliseconds.
+  // End time of the query range.
   //
   // +kubebuilder:validation:Required
   google.protobuf.Timestamp to = 3 [(buf.validate.field).required = true];
@@ -126,14 +122,17 @@ message SearchMeetMessagesResult {
   // Users who authored messages in the meet session.
   repeated coreapi.model.User users = 2;
 
+  // Managers who authored messages in the meet session.
+  repeated coreapi.model.Manager managers = 3;
+
   // Opaque cursor for the next page.
   // Use has_next to determine whether another page exists.
   //
   // +kubebuilder:validation:Nullable
-  string next_cursor = 3;
+  string next_cursor = 4;
 
   // Whether a next page of results exists.
-  bool has_next = 4;
+  bool has_next = 5;
 }
 
 // Retrieves the recording of a call meet session.

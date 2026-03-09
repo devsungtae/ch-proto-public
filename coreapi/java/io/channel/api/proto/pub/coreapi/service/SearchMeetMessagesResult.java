@@ -22,6 +22,7 @@ private static final long serialVersionUID = 0L;
   private SearchMeetMessagesResult() {
     messages_ = java.util.Collections.emptyList();
     users_ = java.util.Collections.emptyList();
+    managers_ = java.util.Collections.emptyList();
     nextCursor_ = "";
   }
 
@@ -75,12 +76,21 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 26: {
+            if (!((mutable_bitField0_ & 0x00000004) != 0)) {
+              managers_ = new java.util.ArrayList<io.channel.api.proto.pub.coreapi.model.Manager>();
+              mutable_bitField0_ |= 0x00000004;
+            }
+            managers_.add(
+                input.readMessage(io.channel.api.proto.pub.coreapi.model.Manager.parser(), extensionRegistry));
+            break;
+          }
+          case 34: {
             java.lang.String s = input.readStringRequireUtf8();
 
             nextCursor_ = s;
             break;
           }
-          case 32: {
+          case 40: {
 
             hasNext_ = input.readBool();
             break;
@@ -105,6 +115,9 @@ private static final long serialVersionUID = 0L;
       }
       if (((mutable_bitField0_ & 0x00000002) != 0)) {
         users_ = java.util.Collections.unmodifiableList(users_);
+      }
+      if (((mutable_bitField0_ & 0x00000004) != 0)) {
+        managers_ = java.util.Collections.unmodifiableList(managers_);
       }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
@@ -223,7 +236,67 @@ private static final long serialVersionUID = 0L;
     return users_.get(index);
   }
 
-  public static final int NEXT_CURSOR_FIELD_NUMBER = 3;
+  public static final int MANAGERS_FIELD_NUMBER = 3;
+  private java.util.List<io.channel.api.proto.pub.coreapi.model.Manager> managers_;
+  /**
+   * <pre>
+   * Managers who authored messages in the meet session.
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+   */
+  @java.lang.Override
+  public java.util.List<io.channel.api.proto.pub.coreapi.model.Manager> getManagersList() {
+    return managers_;
+  }
+  /**
+   * <pre>
+   * Managers who authored messages in the meet session.
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+   */
+  @java.lang.Override
+  public java.util.List<? extends io.channel.api.proto.pub.coreapi.model.ManagerOrBuilder> 
+      getManagersOrBuilderList() {
+    return managers_;
+  }
+  /**
+   * <pre>
+   * Managers who authored messages in the meet session.
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+   */
+  @java.lang.Override
+  public int getManagersCount() {
+    return managers_.size();
+  }
+  /**
+   * <pre>
+   * Managers who authored messages in the meet session.
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+   */
+  @java.lang.Override
+  public io.channel.api.proto.pub.coreapi.model.Manager getManagers(int index) {
+    return managers_.get(index);
+  }
+  /**
+   * <pre>
+   * Managers who authored messages in the meet session.
+   * </pre>
+   *
+   * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+   */
+  @java.lang.Override
+  public io.channel.api.proto.pub.coreapi.model.ManagerOrBuilder getManagersOrBuilder(
+      int index) {
+    return managers_.get(index);
+  }
+
+  public static final int NEXT_CURSOR_FIELD_NUMBER = 4;
   private volatile java.lang.Object nextCursor_;
   /**
    * <pre>
@@ -232,7 +305,7 @@ private static final long serialVersionUID = 0L;
    * +kubebuilder:validation:Nullable
    * </pre>
    *
-   * <code>string next_cursor = 3 [json_name = "nextCursor"];</code>
+   * <code>string next_cursor = 4 [json_name = "nextCursor"];</code>
    * @return The nextCursor.
    */
   @java.lang.Override
@@ -255,7 +328,7 @@ private static final long serialVersionUID = 0L;
    * +kubebuilder:validation:Nullable
    * </pre>
    *
-   * <code>string next_cursor = 3 [json_name = "nextCursor"];</code>
+   * <code>string next_cursor = 4 [json_name = "nextCursor"];</code>
    * @return The bytes for nextCursor.
    */
   @java.lang.Override
@@ -273,14 +346,14 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int HAS_NEXT_FIELD_NUMBER = 4;
+  public static final int HAS_NEXT_FIELD_NUMBER = 5;
   private boolean hasNext_;
   /**
    * <pre>
    * Whether a next page of results exists.
    * </pre>
    *
-   * <code>bool has_next = 4 [json_name = "hasNext"];</code>
+   * <code>bool has_next = 5 [json_name = "hasNext"];</code>
    * @return The hasNext.
    */
   @java.lang.Override
@@ -308,11 +381,14 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < users_.size(); i++) {
       output.writeMessage(2, users_.get(i));
     }
+    for (int i = 0; i < managers_.size(); i++) {
+      output.writeMessage(3, managers_.get(i));
+    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nextCursor_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, nextCursor_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, nextCursor_);
     }
     if (hasNext_ != false) {
-      output.writeBool(4, hasNext_);
+      output.writeBool(5, hasNext_);
     }
     unknownFields.writeTo(output);
   }
@@ -331,12 +407,16 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, users_.get(i));
     }
+    for (int i = 0; i < managers_.size(); i++) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, managers_.get(i));
+    }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nextCursor_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, nextCursor_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, nextCursor_);
     }
     if (hasNext_ != false) {
       size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(4, hasNext_);
+        .computeBoolSize(5, hasNext_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -357,6 +437,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getMessagesList())) return false;
     if (!getUsersList()
         .equals(other.getUsersList())) return false;
+    if (!getManagersList()
+        .equals(other.getManagersList())) return false;
     if (!getNextCursor()
         .equals(other.getNextCursor())) return false;
     if (getHasNext()
@@ -379,6 +461,10 @@ private static final long serialVersionUID = 0L;
     if (getUsersCount() > 0) {
       hash = (37 * hash) + USERS_FIELD_NUMBER;
       hash = (53 * hash) + getUsersList().hashCode();
+    }
+    if (getManagersCount() > 0) {
+      hash = (37 * hash) + MANAGERS_FIELD_NUMBER;
+      hash = (53 * hash) + getManagersList().hashCode();
     }
     hash = (37 * hash) + NEXT_CURSOR_FIELD_NUMBER;
     hash = (53 * hash) + getNextCursor().hashCode();
@@ -519,6 +605,7 @@ private static final long serialVersionUID = 0L;
               .alwaysUseFieldBuilders) {
         getMessagesFieldBuilder();
         getUsersFieldBuilder();
+        getManagersFieldBuilder();
       }
     }
     @java.lang.Override
@@ -535,6 +622,12 @@ private static final long serialVersionUID = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
       } else {
         usersBuilder_.clear();
+      }
+      if (managersBuilder_ == null) {
+        managers_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+      } else {
+        managersBuilder_.clear();
       }
       nextCursor_ = "";
 
@@ -584,6 +677,15 @@ private static final long serialVersionUID = 0L;
         result.users_ = users_;
       } else {
         result.users_ = usersBuilder_.build();
+      }
+      if (managersBuilder_ == null) {
+        if (((bitField0_ & 0x00000004) != 0)) {
+          managers_ = java.util.Collections.unmodifiableList(managers_);
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.managers_ = managers_;
+      } else {
+        result.managers_ = managersBuilder_.build();
       }
       result.nextCursor_ = nextCursor_;
       result.hasNext_ = hasNext_;
@@ -684,6 +786,32 @@ private static final long serialVersionUID = 0L;
                  getUsersFieldBuilder() : null;
           } else {
             usersBuilder_.addAllMessages(other.users_);
+          }
+        }
+      }
+      if (managersBuilder_ == null) {
+        if (!other.managers_.isEmpty()) {
+          if (managers_.isEmpty()) {
+            managers_ = other.managers_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureManagersIsMutable();
+            managers_.addAll(other.managers_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.managers_.isEmpty()) {
+          if (managersBuilder_.isEmpty()) {
+            managersBuilder_.dispose();
+            managersBuilder_ = null;
+            managers_ = other.managers_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+            managersBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getManagersFieldBuilder() : null;
+          } else {
+            managersBuilder_.addAllMessages(other.managers_);
           }
         }
       }
@@ -1276,6 +1404,318 @@ private static final long serialVersionUID = 0L;
       return usersBuilder_;
     }
 
+    private java.util.List<io.channel.api.proto.pub.coreapi.model.Manager> managers_ =
+      java.util.Collections.emptyList();
+    private void ensureManagersIsMutable() {
+      if (!((bitField0_ & 0x00000004) != 0)) {
+        managers_ = new java.util.ArrayList<io.channel.api.proto.pub.coreapi.model.Manager>(managers_);
+        bitField0_ |= 0x00000004;
+       }
+    }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        io.channel.api.proto.pub.coreapi.model.Manager, io.channel.api.proto.pub.coreapi.model.Manager.Builder, io.channel.api.proto.pub.coreapi.model.ManagerOrBuilder> managersBuilder_;
+
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public java.util.List<io.channel.api.proto.pub.coreapi.model.Manager> getManagersList() {
+      if (managersBuilder_ == null) {
+        return java.util.Collections.unmodifiableList(managers_);
+      } else {
+        return managersBuilder_.getMessageList();
+      }
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public int getManagersCount() {
+      if (managersBuilder_ == null) {
+        return managers_.size();
+      } else {
+        return managersBuilder_.getCount();
+      }
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public io.channel.api.proto.pub.coreapi.model.Manager getManagers(int index) {
+      if (managersBuilder_ == null) {
+        return managers_.get(index);
+      } else {
+        return managersBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder setManagers(
+        int index, io.channel.api.proto.pub.coreapi.model.Manager value) {
+      if (managersBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureManagersIsMutable();
+        managers_.set(index, value);
+        onChanged();
+      } else {
+        managersBuilder_.setMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder setManagers(
+        int index, io.channel.api.proto.pub.coreapi.model.Manager.Builder builderForValue) {
+      if (managersBuilder_ == null) {
+        ensureManagersIsMutable();
+        managers_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        managersBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder addManagers(io.channel.api.proto.pub.coreapi.model.Manager value) {
+      if (managersBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureManagersIsMutable();
+        managers_.add(value);
+        onChanged();
+      } else {
+        managersBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder addManagers(
+        int index, io.channel.api.proto.pub.coreapi.model.Manager value) {
+      if (managersBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureManagersIsMutable();
+        managers_.add(index, value);
+        onChanged();
+      } else {
+        managersBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder addManagers(
+        io.channel.api.proto.pub.coreapi.model.Manager.Builder builderForValue) {
+      if (managersBuilder_ == null) {
+        ensureManagersIsMutable();
+        managers_.add(builderForValue.build());
+        onChanged();
+      } else {
+        managersBuilder_.addMessage(builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder addManagers(
+        int index, io.channel.api.proto.pub.coreapi.model.Manager.Builder builderForValue) {
+      if (managersBuilder_ == null) {
+        ensureManagersIsMutable();
+        managers_.add(index, builderForValue.build());
+        onChanged();
+      } else {
+        managersBuilder_.addMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder addAllManagers(
+        java.lang.Iterable<? extends io.channel.api.proto.pub.coreapi.model.Manager> values) {
+      if (managersBuilder_ == null) {
+        ensureManagersIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, managers_);
+        onChanged();
+      } else {
+        managersBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder clearManagers() {
+      if (managersBuilder_ == null) {
+        managers_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+      } else {
+        managersBuilder_.clear();
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public Builder removeManagers(int index) {
+      if (managersBuilder_ == null) {
+        ensureManagersIsMutable();
+        managers_.remove(index);
+        onChanged();
+      } else {
+        managersBuilder_.remove(index);
+      }
+      return this;
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public io.channel.api.proto.pub.coreapi.model.Manager.Builder getManagersBuilder(
+        int index) {
+      return getManagersFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public io.channel.api.proto.pub.coreapi.model.ManagerOrBuilder getManagersOrBuilder(
+        int index) {
+      if (managersBuilder_ == null) {
+        return managers_.get(index);  } else {
+        return managersBuilder_.getMessageOrBuilder(index);
+      }
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public java.util.List<? extends io.channel.api.proto.pub.coreapi.model.ManagerOrBuilder> 
+         getManagersOrBuilderList() {
+      if (managersBuilder_ != null) {
+        return managersBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(managers_);
+      }
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public io.channel.api.proto.pub.coreapi.model.Manager.Builder addManagersBuilder() {
+      return getManagersFieldBuilder().addBuilder(
+          io.channel.api.proto.pub.coreapi.model.Manager.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public io.channel.api.proto.pub.coreapi.model.Manager.Builder addManagersBuilder(
+        int index) {
+      return getManagersFieldBuilder().addBuilder(
+          index, io.channel.api.proto.pub.coreapi.model.Manager.getDefaultInstance());
+    }
+    /**
+     * <pre>
+     * Managers who authored messages in the meet session.
+     * </pre>
+     *
+     * <code>repeated .coreapi.model.Manager managers = 3 [json_name = "managers"];</code>
+     */
+    public java.util.List<io.channel.api.proto.pub.coreapi.model.Manager.Builder> 
+         getManagersBuilderList() {
+      return getManagersFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        io.channel.api.proto.pub.coreapi.model.Manager, io.channel.api.proto.pub.coreapi.model.Manager.Builder, io.channel.api.proto.pub.coreapi.model.ManagerOrBuilder> 
+        getManagersFieldBuilder() {
+      if (managersBuilder_ == null) {
+        managersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+            io.channel.api.proto.pub.coreapi.model.Manager, io.channel.api.proto.pub.coreapi.model.Manager.Builder, io.channel.api.proto.pub.coreapi.model.ManagerOrBuilder>(
+                managers_,
+                ((bitField0_ & 0x00000004) != 0),
+                getParentForChildren(),
+                isClean());
+        managers_ = null;
+      }
+      return managersBuilder_;
+    }
+
     private java.lang.Object nextCursor_ = "";
     /**
      * <pre>
@@ -1284,7 +1724,7 @@ private static final long serialVersionUID = 0L;
      * +kubebuilder:validation:Nullable
      * </pre>
      *
-     * <code>string next_cursor = 3 [json_name = "nextCursor"];</code>
+     * <code>string next_cursor = 4 [json_name = "nextCursor"];</code>
      * @return The nextCursor.
      */
     public java.lang.String getNextCursor() {
@@ -1306,7 +1746,7 @@ private static final long serialVersionUID = 0L;
      * +kubebuilder:validation:Nullable
      * </pre>
      *
-     * <code>string next_cursor = 3 [json_name = "nextCursor"];</code>
+     * <code>string next_cursor = 4 [json_name = "nextCursor"];</code>
      * @return The bytes for nextCursor.
      */
     public com.google.protobuf.ByteString
@@ -1329,7 +1769,7 @@ private static final long serialVersionUID = 0L;
      * +kubebuilder:validation:Nullable
      * </pre>
      *
-     * <code>string next_cursor = 3 [json_name = "nextCursor"];</code>
+     * <code>string next_cursor = 4 [json_name = "nextCursor"];</code>
      * @param value The nextCursor to set.
      * @return This builder for chaining.
      */
@@ -1350,7 +1790,7 @@ private static final long serialVersionUID = 0L;
      * +kubebuilder:validation:Nullable
      * </pre>
      *
-     * <code>string next_cursor = 3 [json_name = "nextCursor"];</code>
+     * <code>string next_cursor = 4 [json_name = "nextCursor"];</code>
      * @return This builder for chaining.
      */
     public Builder clearNextCursor() {
@@ -1366,7 +1806,7 @@ private static final long serialVersionUID = 0L;
      * +kubebuilder:validation:Nullable
      * </pre>
      *
-     * <code>string next_cursor = 3 [json_name = "nextCursor"];</code>
+     * <code>string next_cursor = 4 [json_name = "nextCursor"];</code>
      * @param value The bytes for nextCursor to set.
      * @return This builder for chaining.
      */
@@ -1388,7 +1828,7 @@ private static final long serialVersionUID = 0L;
      * Whether a next page of results exists.
      * </pre>
      *
-     * <code>bool has_next = 4 [json_name = "hasNext"];</code>
+     * <code>bool has_next = 5 [json_name = "hasNext"];</code>
      * @return The hasNext.
      */
     @java.lang.Override
@@ -1400,7 +1840,7 @@ private static final long serialVersionUID = 0L;
      * Whether a next page of results exists.
      * </pre>
      *
-     * <code>bool has_next = 4 [json_name = "hasNext"];</code>
+     * <code>bool has_next = 5 [json_name = "hasNext"];</code>
      * @param value The hasNext to set.
      * @return This builder for chaining.
      */
@@ -1415,7 +1855,7 @@ private static final long serialVersionUID = 0L;
      * Whether a next page of results exists.
      * </pre>
      *
-     * <code>bool has_next = 4 [json_name = "hasNext"];</code>
+     * <code>bool has_next = 5 [json_name = "hasNext"];</code>
      * @return This builder for chaining.
      */
     public Builder clearHasNext() {
@@ -1485,6 +1925,31 @@ private static final long serialVersionUID = 0L;
     		return clearUsers();
     	else {
     		values.forEach(value -> addUsers(mapFunc.apply(value)));
+    		return this;
+    	}
+    }
+    	
+    /**
+     * @param values The managers to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllOrClearManagers(java.lang.Iterable<? extends io.channel.api.proto.pub.coreapi.model.Manager> values) {
+    	if (values == null)
+    		return clearManagers();
+    	else
+    		return addAllManagers(values);
+    }
+    	
+    /**
+     * @param values The values to map.
+     * @param mapFunc The function to map the values into each proto message.
+     * @return This builder for chaining.
+     */
+    public <T> Builder mapAllOrClearManagers(java.lang.Iterable<T> values, java.util.function.Function<T, ? extends io.channel.api.proto.pub.coreapi.model.Manager> mapFunc) {
+    	if (values == null)
+    		return clearManagers();
+    	else {
+    		values.forEach(value -> addManagers(mapFunc.apply(value)));
     		return this;
     	}
     }

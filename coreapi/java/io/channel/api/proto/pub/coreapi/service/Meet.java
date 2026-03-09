@@ -110,19 +110,20 @@ public final class Meet {
       "rR\tsortOrder\022\026\n\006cursor\030\004 \001(\tR\006cursor\022u\n\005" +
       "limit\030\005 \001(\005B_\272H\\\272\001Y\n\rint32.between\022\037limi" +
       "t must be between 1 and 500\032\'this == 0 |" +
-      "| (this >= 1 && this <= 500)R\005limit\"\271\001\n\030" +
+      "| (this >= 1 && this <= 500)R\005limit\"\355\001\n\030" +
       "SearchMeetMessagesResult\0226\n\010messages\030\001 \003" +
       "(\0132\032.coreapi.model.MeetMessageR\010messages" +
       "\022)\n\005users\030\002 \003(\0132\023.coreapi.model.UserR\005us" +
-      "ers\022\037\n\013next_cursor\030\003 \001(\tR\nnextCursor\022\031\n\010" +
-      "has_next\030\004 \001(\010R\007hasNext\"g\n\027GetMeetRecord" +
-      "ingRequest\022%\n\nchannel_id\030\001 \001(\tB\006\272H\003\310\001\001R\t" +
-      "channelId\022%\n\nmessage_id\030\002 \001(\tB\006\272H\003\310\001\001R\tm" +
-      "essageId\"?\n\026GetMeetRecordingResult\022%\n\nsi" +
-      "gned_url\030\001 \001(\tB\006\272H\003\310\001\001R\tsignedUrlBf\n(io." +
-      "channel.api.proto.pub.coreapi.serviceP\001Z" +
-      "8github.com/channel-io/ch-proto-public/c" +
-      "oreapi/go/serviceb\006proto3"
+      "ers\0222\n\010managers\030\003 \003(\0132\026.coreapi.model.Ma" +
+      "nagerR\010managers\022\037\n\013next_cursor\030\004 \001(\tR\nne" +
+      "xtCursor\022\031\n\010has_next\030\005 \001(\010R\007hasNext\"g\n\027G" +
+      "etMeetRecordingRequest\022%\n\nchannel_id\030\001 \001" +
+      "(\tB\006\272H\003\310\001\001R\tchannelId\022%\n\nmessage_id\030\002 \001(" +
+      "\tB\006\272H\003\310\001\001R\tmessageId\"?\n\026GetMeetRecording" +
+      "Result\022%\n\nsigned_url\030\001 \001(\tB\006\272H\003\310\001\001R\tsign" +
+      "edUrlBf\n(io.channel.api.proto.pub.coreap" +
+      "i.serviceP\001Z8github.com/channel-io/ch-pr" +
+      "oto-public/coreapi/go/serviceb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -187,7 +188,7 @@ public final class Meet {
     internal_static_coreapi_service_SearchMeetMessagesResult_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_coreapi_service_SearchMeetMessagesResult_descriptor,
-        new java.lang.String[] { "Messages", "Users", "NextCursor", "HasNext", });
+        new java.lang.String[] { "Messages", "Users", "Managers", "NextCursor", "HasNext", });
     internal_static_coreapi_service_GetMeetRecordingRequest_descriptor =
       getDescriptor().getMessageTypes().get(8);
     internal_static_coreapi_service_GetMeetRecordingRequest_fieldAccessorTable = new

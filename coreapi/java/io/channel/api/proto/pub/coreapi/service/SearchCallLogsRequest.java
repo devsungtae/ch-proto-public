@@ -6,8 +6,6 @@ package io.channel.api.proto.pub.coreapi.service;
 /**
  * <pre>
  * Retrieves a list of call logs within a specified time range.
- * The from and to parameters define the query time range
- * as Unix timestamps in milliseconds.
  * The maximum allowed range between from and to is 90 days.
  * </pre>
  *
@@ -170,7 +168,7 @@ private static final long serialVersionUID = 0L;
   private com.google.protobuf.Timestamp from_;
   /**
    * <pre>
-   * Start time of the query range as a Unix timestamp in milliseconds.
+   * Start time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -183,7 +181,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Start time of the query range as a Unix timestamp in milliseconds.
+   * Start time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -196,7 +194,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * Start time of the query range as a Unix timestamp in milliseconds.
+   * Start time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -211,7 +209,7 @@ private static final long serialVersionUID = 0L;
   private com.google.protobuf.Timestamp to_;
   /**
    * <pre>
-   * End time of the query range as a Unix timestamp in milliseconds.
+   * End time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -224,7 +222,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * End time of the query range as a Unix timestamp in milliseconds.
+   * End time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -237,7 +235,7 @@ private static final long serialVersionUID = 0L;
   }
   /**
    * <pre>
-   * End time of the query range as a Unix timestamp in milliseconds.
+   * End time of the query range.
    * +kubebuilder:validation:Required
    * </pre>
    *
@@ -437,8 +435,6 @@ private static final long serialVersionUID = 0L;
   /**
    * <pre>
    * Retrieves a list of call logs within a specified time range.
-   * The from and to parameters define the query time range
-   * as Unix timestamps in milliseconds.
    * The maximum allowed range between from and to is 90 days.
    * </pre>
    *
@@ -718,7 +714,7 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> fromBuilder_;
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -730,7 +726,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -746,7 +742,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -767,7 +763,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -786,7 +782,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -809,7 +805,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -828,7 +824,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -841,7 +837,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -857,7 +853,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * Start time of the query range as a Unix timestamp in milliseconds.
+     * Start time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -882,7 +878,7 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> toBuilder_;
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -894,7 +890,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -910,7 +906,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -931,7 +927,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -950,7 +946,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -973,7 +969,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -992,7 +988,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -1005,7 +1001,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
@@ -1021,7 +1017,7 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * End time of the query range as a Unix timestamp in milliseconds.
+     * End time of the query range.
      * +kubebuilder:validation:Required
      * </pre>
      *
