@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+package coreapi.service;
+
+import "buf/validate/validate.proto";
+import "coreapi/model/chat_tag.proto";
+
+option go_package = "github.com/channel-io/ch-proto-public/coreapi/go/service";
+option java_multiple_files = true;
+option java_package = "io.channel.api.proto.pub.coreapi.service";
+
+// Retrieves a list of chat tags.
+//
+// The number of chat tags retrieved is restricted by the limit parameter,
+// and is capped to values in the closed interval [1, 500].
+// Pagination is cursor-based. Pass the nextCursor value from the previous response
+// as the cursor parameter to retrieve the next page.
+// If the cursor parameter is left empty, the list starts with the
+// first chat tag in ascending order of key.
+//
+// Results are sorted by key in ascending order.
+// The maximum number of chat tags per channel is 1000.
+message SearchChatTagsRequest {
+  // Channel ID to search chat tags in.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // Opaque pagination cursor from a previous response.
+  string cursor = 2;
+
+  // Maximum number of results to return. Defaults to 25 if unset.
+  int32 limit = 3 [(buf.validate.field).cel = {
+    id: "int32.between"
+    message: "limit must be between 1 and 500"
+    expression: "this == 0 || (this >= 1 && this <= 500)"
+  }];
+}
+
+// Response for chat tag list retrieval.
+message SearchChatTagsResult {
+  repeated coreapi.model.ChatTag chat_tags = 1;
+
+  // Opaque cursor for the next page.
+  // Use has_next to determine whether another page exists.
+  //
+  // +kubebuilder:validation:Nullable
+  string next_cursor = 2;
+
+  // Whether a next page of results exists.
+  bool has_next = 3;
+}
+
+// Retrieves a single chat tag.
+message GetChatTagRequest {
+  // Chat tag ID to retrieve.
+  string id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the chat tag belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for single chat tag retrieval.
+message GetChatTagResult {
+  coreapi.model.ChatTag chat_tag = 1;
+}
+
+// Creates a chat tag.
+//
+// The name must be unique within the channel (case-insensitive).
+// The key field is automatically derived as the lowercase representation of name.
+// The maximum number of chat tags per channel is 1000.
+message CreateChatTagRequest {
+  // Channel ID to create the chat tag in.
+  string channel_id = 1 [(buf.validate.field).required = true];
+
+  // Display name of the chat tag.
+  // Supports hierarchical naming with "/" as a depth separator (max 3 levels).
+  // Cannot contain ".", "\", "$", "%" or whitespace characters.
+  string name = 2 [
+    (buf.validate.field).cel = {
+      id: "string.minLen"
+      message: "value must be at least 1 character"
+      expression: "size(this) >= 1"
+    },
+    (buf.validate.field).cel = {
+      id: "string.maxLen"
+      message: "value must be no more than 128 characters"
+      expression: "size(this) <= 128"
+    },
+    (buf.validate.field).string.pattern = "^[^.\\\\$%\\s]+$",
+    (buf.validate.field).required = true
+  ];
+
+  // Color theme of the chat tag.
+  coreapi.model.ChatTagColorVariant color_variant = 3;
+
+  // Short description of the chat tag.
+  string description = 4 [(buf.validate.field).cel = {
+    id: "string.maxLen"
+    message: "value must be no more than 128 characters"
+    expression: "size(this) <= 128"
+  }];
+}
+
+// Response for chat tag creation.
+message CreateChatTagResult {
+  coreapi.model.ChatTag chat_tag = 1;
+}
+
+// Updates a chat tag.
+//
+// Only color_variant and description can be updated.
+// The name and key fields are immutable after creation.
+//
+// Returns 404 if the chat tag does not exist.
+message UpdateChatTagRequest {
+  // Chat tag ID to update.
+  string id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the chat tag belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+
+  // Color theme of the chat tag.
+  coreapi.model.ChatTagColorVariant color_variant = 3;
+
+  // Short description of the chat tag.
+  string description = 4 [(buf.validate.field).cel = {
+    id: "string.maxLen"
+    message: "value must be no more than 128 characters"
+    expression: "size(this) <= 128"
+  }];
+}
+
+// Response for chat tag update.
+message UpdateChatTagResult {
+  coreapi.model.ChatTag chat_tag = 1;
+}
+
+// Deletes a chat tag and all its sub-depth tags.
+//
+// When a hierarchical tag is deleted, all tags sharing the same key prefix
+// are also deleted (e.g. deleting "billing" also deletes "billing/refund" and "billing/refund/urgent").
+//
+// Returns 404 if the chat tag does not exist.
+message DeleteChatTagRequest {
+  // Chat tag ID to delete.
+  string id = 1 [(buf.validate.field).required = true];
+
+  // Channel ID the chat tag belongs to.
+  string channel_id = 2 [(buf.validate.field).required = true];
+}
+
+// Response for chat tag deletion. Empty on success (204 No Content).
+message DeleteChatTagResult {}

@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package coreapi.model;
+
+import "buf/validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/channel-io/ch-proto-public/coreapi/go/model";
+option java_multiple_files = true;
+option java_package = "io.channel.api.proto.pub.coreapi.model";
+
+// Color theme for a chat tag.
+enum ChatTagColorVariant {
+  CHAT_TAG_COLOR_VARIANT_UNSPECIFIED = 0;
+  CHAT_TAG_COLOR_VARIANT_COBALT = 1;
+  CHAT_TAG_COLOR_VARIANT_GREEN = 2;
+  CHAT_TAG_COLOR_VARIANT_ORANGE = 3;
+  CHAT_TAG_COLOR_VARIANT_RED = 4;
+  CHAT_TAG_COLOR_VARIANT_BLACK = 5;
+  CHAT_TAG_COLOR_VARIANT_PINK = 6;
+  CHAT_TAG_COLOR_VARIANT_PURPLE = 7;
+}
+
+// ChatTag represents a label that can be attached to user chats for categorization.
+// Tags support up to 3 levels of hierarchy using "/" as a depth separator (e.g. "billing/refund/urgent").
+message ChatTag {
+  // Unique chat tag identifier.
+  //
+  // +kubebuilder:validation:Required
+  // +kubebuilder:validation:MinLength=1
+  string id = 1 [
+    (buf.validate.field).cel = {
+      id: "string.minLen"
+      message: "value must be at least 1 character"
+      expression: "size(this) >= 1"
+    },
+    (buf.validate.field).required = true
+  ];
+
+  // Channel ID this chat tag belongs to.
+  //
+  // +kubebuilder:validation:Required
+  // +kubebuilder:validation:MinLength=1
+  string channel_id = 2 [
+    (buf.validate.field).cel = {
+      id: "string.minLen"
+      message: "value must be at least 1 character"
+      expression: "size(this) >= 1"
+    },
+    (buf.validate.field).required = true
+  ];
+
+  // Color theme of the chat tag.
+  //
+  // +kubebuilder:validation:Nullable
+  ChatTagColorVariant color_variant = 3;
+
+  // Display name of the chat tag.
+  // Supports hierarchical naming with "/" as a depth separator (max 3 levels).
+  // Cannot contain ".", "\", "$", "%" or whitespace characters.
+  //
+  // +kubebuilder:validation:Required
+  // +kubebuilder:validation:MinLength=1
+  // +kubebuilder:validation:MaxLength=128
+  string name = 4 [
+    (buf.validate.field).cel = {
+      id: "string.minLen"
+      message: "value must be at least 1 character"
+      expression: "size(this) >= 1"
+    },
+    (buf.validate.field).cel = {
+      id: "string.maxLen"
+      message: "value must be no more than 128 characters"
+      expression: "size(this) <= 128"
+    },
+    (buf.validate.field).string.pattern = "^[^.\\\\$%\\s]+$",
+    (buf.validate.field).required = true
+  ];
+
+  // Lowercase representation of name.
+  // Unique within the channel (case-insensitive).
+  //
+  // +kubebuilder:validation:Required
+  // +kubebuilder:validation:MinLength=1
+  string key = 5 [
+    (buf.validate.field).cel = {
+      id: "string.minLen"
+      message: "value must be at least 1 character"
+      expression: "size(this) >= 1"
+    },
+    (buf.validate.field).required = true
+  ];
+
+  // Short description of the chat tag.
+  //
+  // +kubebuilder:validation:Nullable
+  // +kubebuilder:validation:MaxLength=128
+  string description = 6 [(buf.validate.field).cel = {
+    id: "string.maxLen"
+    message: "value must be no more than 128 characters"
+    expression: "size(this) <= 128"
+  }];
+
+  // Chat tag creation timestamp.
+  //
+  // +kubebuilder:validation:Required
+  google.protobuf.Timestamp created_at = 7 [(buf.validate.field).required = true];
+}
