@@ -393,4 +393,3 @@ message AssignManagerToUserChatRequest {
 message AssignManagerToUserChatResult {
   coreapi.model.UserChat user_chat = 1;
 }
-
